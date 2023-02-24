@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* id, class 선택자 */
+      /* id가 header인 태그의 스타일 : 넓이 800px, 배경색 red */
+      /* id가 wrap인 태그의 스타일 : 넓이 800px */
+      /* id가 aside인 태그의 스타일 : 넓이 200px 배경색 blue */
+      /* id가 content인 태그의 스타일 : 넓이 600px 배경색 green */
+
+      #header {
+        width: 800px;
+        margin: 10px 50px 100px 150px;
+        /* 4개 선언 : 위, 오른쪽, 아래, 왼쪽으로 선언됨
+           2개 선언 : 상하, 좌우 */
+        background-color: red;
+      }
+      #wrap {
+        width: 800px;
+        overflow: hidden;
+      }
+      #aside {
+        width: 200px;
+        background-color: blue;
+        float: left;
+      }
+      #content {
+        width: 600px;
+        background-color: green;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Header</h1>
+    </div>
+
+    <div id="wrap">
+      <div id="aside">
+        <h1>Aside</h1>
+      </div>
+      <!-- div#content>h1{Content} -->
+      <div id="content">
+        <h1>Content</h1>
+      </div>
+    </div>
+
+    <div class="aaa"></div>
+    <div class="aaa"></div>
+    <div class="aaa"></div>
+    <div class="aaa"></div>
+  </body>
+</html>
