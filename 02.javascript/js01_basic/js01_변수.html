@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 한줄주석
+      /* 여러줄 주석 */
+      /*
+        A. JavaScript 정의하는 방법
+          1. html파일의 script블럭 안에 정의
+            - script블럭은 html 파일 어디에나 위치 가능.
+              하지만 html은 처음부터 순차적 실행되므로 주의.
+          2. html의 요소에 정의(inline)
+          3. 외부파일로 정의
+
+        B. JavaScript 기본문법
+          1. 자바스크립트는 실행문장 끝에 세미콜론(;) 필수
+          2. 변수의 선언방법 (변수 : 하나의 저장장소)
+            - var, let, const or 선언하지 않음
+              var : 제한 없이 변수 재선언 및 값 변경 가능
+              let : 선언된 변수는 재선언 불가. 값 변경 가능
+              const : 선언된 변수는 재선언 및 값 변경 불가.
+            - 변수 선언 규칙
+              - 영문, 언더바(_), 숫자 사용.
+              - 첫글자는 영문,언더바,$기호 중 하나.
+              - JavaScript에서 사용하는 예약어(if, let, cont, for ...) 사용불가
+              - 변수명 첫글자는 소문자로 시작, CamelCase or 단어사이 언더바 로 정의하기.
+                ex) 
+              - 스타일가이드 규칙에 의거해 작성하는 것이 관례.
+                ex) 구글 자바스크립트 스타일 가이드 : google.github.io/styleguide/jsguide.html
+                ex) 에어비앤비 자바스크립트 스타일 가이드 : github.com/airbnb/javascript
+          3. 문자열의 선언은 큰 따옴표, 작은 따옴표 구분x 정의 가능
+          4. 큰따옴표 안에서 큰따옴표, 작은따옴표 안에선 작은따옴표 사용불가 (=중복불가)
+            중복되지 않게 사용 가능
+            큰(작은)따옴표 안에 큰(작은)따옴표 문자로 사용하려면 이스케이프문자(\) 사용
+          5. 백틱(`) 사용 -> 문자열 간단하게 표현 가능
+      */
+    </script>
+    <script>
+      // alert("1");
+      // alert("내 이름은 홍길동");
+      a = '홍길동';
+      // alert('제 이름은 a입니다');
+      // alert('제 이름은 ' + a + '입니다'); //숫자일땐 더하기, 문자일땐 연결
+      var a = '홍길동';
+      let b = '손흥민';
+      const c = '이강인';
+      d = "김민'재";
+      e = '김민"재';
+      console.log(a, b, c, d, e);
+      console.log('제 이름은 ' + a + '입니다');
+      console.log(`제 이름은 ${a} 입니다`); //백틱사용
+
+      //변수명 선언 규칙
+      // let 1a = '값1'; (x)
+      // let @a = '값2'; (x)
+      // let _ a; (x)
+      // let if = 100; (x)
+      let _a;
+      let $a;
+      let a264402;
+      let helloWorldJavaScript = '카멜케이스';
+      let hello_world;
+    </script>
+
+    <script>
+      //실습문제
+      //h1 tag : 제 이름은 본인이름 입니다.
+      //h2 tag : 나이는 99살 입니다.
+      //document.write, prompt를 이용해 출력하기
+      // 변수 name, age 각각 선언 -> prompt(메시지, 기본값); 이용해서 이름과 나이를 전달받아서 출력
+      let name;
+      let age;
+      name = prompt('이름을 입력하세요', '홍길동');
+      age = prompt('나이를 입력하세요', '18');
+
+      console.log(`제 이름은 ${name} 입니다.`);
+      console.log(`제 나이는 ${age}세 입니다.`);
+
+      document.write(`<h1>제 이름은 ${name}입니다</h1>`);
+      document.write('<h3>제 나이는 ' + age + '세 입니다</h3>');
+
+      let h1 = document.querySelector('#name');
+      let h3 = document.querySelector('#age');
+    </script>
+  </head>
+  <body>
+    <button onclick="alert('2');">경고메세지</button>
+    <!-- <script src="./js/js01.js"></script> -->
+    <h1 id="name"></h1>
+    <h3 id="age"></h3>
+  </body>
+</html>
