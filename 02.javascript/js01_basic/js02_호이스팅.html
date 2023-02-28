@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // let name = prompt('이름을 입력하세요', '홍길동');
+      // let age = prompt('나이를 입력하세요', 18);
+      // console.log(`제 이름은 ${name}입니다`);
+      // console.log(`제 나이는 ${age}세 입니다`);
+      // document.write(`<h1>제 이름은 ${name}입니다</h1>`);
+      // document.write(`<h3>제 나이는 ${age}세 입니다</h3>`);
+    </script>
+    <script>
+      // 호이스팅
+      // ECMA2015 이전엔 변수선언 시 var예약어 사용함.
+      // 변수에 var 사용해서 선언 -> 호이스팅(hoisting)이라는 개념 주의하기.
+      // 호이스팅 : '끌어올린다'는 의미
+
+      // 상황에 따라 변수 선언 부분을 '스코프의 가장 위쪽으로 끌어올린다'는 것.
+      // 실제로 소스 코드를 위로 올리는 게 X. 자바스크립트에서 이런식으로 해석한다는 의미.
+
+      // var과 달리 let,const 사용할 경우 변수 선언 전에 사용하면 Error발생(유지보수 시 쉽게 확인 가능)
+      // var 사용할 경우 변수 선언 전에 사용하면 결과값이 다르게 나타남 -> 에러 찾기 힘듬
+
+      // 예약어     선언하지 않고 사용      재선언      재할당
+      // var        오류x(호이스팅)           O           O
+      // let        오류 발생                 X           O
+      // const      오류 발생                 X           X
+
+      // var x = 10;
+      // var sum = x + y;
+      // var y = 20;
+      // console.log(sum);
+
+      var x = 10;
+      var y;
+      var sum = x + y;
+      var y = 20;
+      console.log(sum);
+    </script>
+  </head>
+  <body>
+    <h1 id="name"></h1>
+
+    <!-- <script>
+      let h1 = document.querySelector('#name');
+      console.log(h1);
+      h1.innerHTML = '김민재';
+    </script> -->
+  </body>
+</html>

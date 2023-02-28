@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+      자료형
+      1. 숫자형 : 정수형(integer), 실수형(float) : number
+      2. 문자형 : 작은(큰)따옴표로 감싼 데이터 : string
+      3. 논리형 : true/false : boolean
+    */
+
+      console.log(10, typeof 10);
+      console.log(3.14, typeof 3.14);
+      console.log('문자열', typeof '문자열');
+      console.log('', typeof '');
+      console.log(3.14, typeof '3.14');
+      console.log(true, typeof true);
+      console.log(false, typeof false);
+      // console.log(True, typeof True); ->Error. True는 선언되지 않은 변수.
+
+      console.log(true + 1); // -> 2 (true 값은 1)
+      console.log(false + 1); // -> 1 (false의 값은 0)
+    </script>
+
+    <script>
+      /*
+        비교연산자(논리연산자. 결과는 boolean으로 나옴)
+        ==, === : 동등 연산자
+        !=, !== : 불일치
+        >=      : 크거나 같다
+        <=      : 작거나 같다
+        <       : 크다
+        >       : 작다
+      */
+
+      console.log(true == 1); //결과는 true
+      console.log(true === 1); //결과는 false
+      console.log(false == 0); //true
+      console.log(false === 0); //false
+
+      console.log(5 == 0); //false
+      console.log(5 == 5); //true
+      console.log(5 > 5); //false
+      console.log(5 >= 5); //true
+      console.log(5 >= '5'); //true
+
+      console.log(5 == '5'); //true
+      console.log(5 === '5'); //false
+      console.log(5 != '5'); //false
+      console.log(5 !== '5'); //true
+
+      console.log(32 > 20); //true
+      console.log(32 > 20 > 10); //false -> 왼쪽의 비교결과(1)와 10을 비교
+      console.log(32 > 20 > 0); //true
+    </script>
+
+    <script>
+      /*
+        논리연산자
+        ! : not. 부정연산
+        && : and. 논리곱
+        || : or. 논리합
+      */
+      console.log(true); //true
+      console.log(!true); //false
+      console.log(!5 > 2); //false
+
+      console.log(30 > 20 && 20 > 10); //true
+      console.log(30 > 20 && 20 < 10); //false
+      console.log(30 > 20 || 20 > 10); //true
+      console.log(30 > 20 || 20 < 10); //true
+    </script>
+
+    <script>
+      let age = 10;
+      console.log(age >= 18);
+      if (age >= 18) {
+        console.log('성인입니다');
+      } else {
+        console.log('미성년자입니다');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
