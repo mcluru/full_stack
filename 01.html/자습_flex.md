@@ -134,6 +134,59 @@ ex)
 Item의 너비(증가, 감소, 기본) 설정하는 단축 속성
 
 - 사용법 : 증가너비 감소너비 기본너비;  
-  생략하면 기본값 적용됨  
+  생략하면 기본값 적용됨 (flex-grow 제외 생략 가능)
   ex) flex : 1 1 20px; -> 증가너비 감소너비 기본너비  
   ex) flex : 1 1; -> 증가너비 감소너비
+
+* flex-basis의 기본값은 auto, 단축속성에서 생략할 경우 0 적용
+
+<br>
+<br>
+<h2>flex-grow</h2>
+
+Item의 증가 너비 비율 설정. (숫자 클수록 더 많은 너비 가짐)  
+모든 Items는 총 증가 너비에서 각 item의 증가 너비 비율만큼 너비 가질 수 있음  
+즉, 상대적 너비라는 의미  
+0일 경우 효과 x (늘어나지 않음)
+
+- 기본값 : 0  
+  ex) \<div class="item">0\</div>
+
+<br>
+<br>
+<h2>flex-shrink</h2>
+
+Item의 감소 너비 비율 설정. (숫자 클수록 더 많은 너비 감소)  
+width, height, flex-basis 등으로 너비 지정된 경우에만 영향 받음.  
+Container의 너비가 줄어 Items의 너비에 영향 미칠 경우, 영향을 미치기 시작한 지점부터 줄어든 거리만큼 감소 너비 비율에 맞게 줄어듬.  
+0일 경우 효과 x()
+
+- 기본값 : 1  
+  ex) \<div class="item">0\</div>
+
+<br>
+<br>
+<h2>flex-basis</h2>
+
+Item의 (공간 배분 전) 기본 너비 설정.
+
+- 기본값 : auto
+
+값이 auto일땐 width, height 등의 속성으로 Item의 너비 설정 가능.  
+px, em, cm 등 단위 값이 주어질 경우 설정 불가
+
+<br>
+<br>
+<h2>align-self</h2>
+
+교차 축에서 개별 Item의 정렬 방법 설정.
+Container내 모든 Items의 정렬 방법을 설정하는 align-items와 달리 필요에 의해 일부만 정렬을 변경할 경우 사용 가능.  
+align-items 속성보다 우선함
+
+- auto : Conainer의 align-items 속성을 상속받음  
+  기본값 : auto
+- stretch : Container의 교차 축을 채우기위해 Item을 늘림
+- flex-start : 각 줄의 시작점으로 정렬
+- flex-end : 각 줄의 끝점으로 정렬
+- center : 가운데 정렬
+- baseline : 문자 기준선에 정렬
