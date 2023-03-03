@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      // 중첩 for(nested for)문
+      // for() {
+      //    for() {
+      //    }
+      // }
+
+      for (i = 1; i <= 10; i++) {
+        console.log(`바깥 for loop ... ${i}`);
+        for (j = 1; j <= 10; j++) {
+          console.log(`---------안쪽 for loop ... ${j}`);
+        }
+      }
+
+      // 실습1. 구구단 중에서 9단 출력
+      // 3 x 1 =9
+      // ...
+      // 3 x 9 = 27
+
+      for (i = 1; i < 10; i++) {
+        console.log(`3 x ${i} = ${3 * i}`);
+      }
+
+      // 실습2. 전체 구구단을 body에 세로로 출력(중첩for문)
+      for (i = 2; i < 10; i++) {
+        document.write(`<h3>= ${i}단 =</h3>`);
+        for (j = 1; j < 10; j++) {
+          document.write(`${i} x ${j} = ${i * j}<br>`);
+        }
+      }
+      document.write(`<hr>`);
+
+      // 실습3. 전체 구구단을 body에 가로로 출력(중첩for문)
+      // 복합연산자 이용해서 문자열 연결하기
+      let dan = '';
+      let sum = '';
+      for (i = 2; i < 10; i++) {
+        dan += `= ${i}단 = \t`;
+        for (j = 1; j < 10; j++) {
+          sum += `${i} x ${j} = ${i * j} \t`;
+        }
+        sum += '<p>';
+      }
+      document.write(dan, '<br>');
+      document.write(sum);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/js04.css" />
+
+    <script>
+      // 1. forEach : for문과 array - 배열.forEach(콜백함수);
+      // https://sisiblog.tistory.com/247 <<자세한 설명
+      // 2. for .. of   : for문과 array
+      // 3. for .. in   : for문과 object
+
+      let arr1 = ['손흥민', '이강인', '김민재', '김연경', '류현진'];
+      console.log(`배열의 크기 = ${arr1.length}`);
+
+      for (let i = 0; i < arr1.length; i++) {
+        document.write(`${i} = ${arr1[i]}<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      // 1. forEach : for문과 array - 배열.forEach(콜백함수);
+      // 배열의 값을 name의 자리에 넣는 것. 배열의 첫번째부터 마지막까지 반복하며 item꺼낼 수 있음
+      // 오직 array 객체에서만 사용 가능
+      // 배열.forEach(function(currentValue, index, arr))
+      // currentValue : 배열의 값
+      // index(선택사항) : 현재 항목의 인덱스
+      // arr(선택사항) : 현재 항목의 배열
+      arr1.forEach(function (name) {
+        document.write(`${name}<br>`);
+      });
+
+      document.write(`<hr>`);
+
+      // arrow function 사용 (lambda식)
+      arr1.forEach((name) => document.write(`${name}<br>`));
+
+      document.write(`<hr>`);
+
+      // 2. for .. of   : for문과 array
+      // for of 는 배열에서 값을 꺼내옴
+      for (let xxx of arr1) {
+        document.write(`${xxx}<br>`);
+      }
+
+      // 3. for .. in   : for문과 object
+      // for in
+      let hong = {
+        name: '홍길동',
+        age: 1000,
+        addr: '조선 한양',
+        tel: '010-9999-8888',
+      };
+      console.log(`이름 = ${hong.name}`);
+      console.log(`나이 = ${hong['age']}`);
+      console.log(`이름 = ${hong.addr}`);
+      console.log(`이름 = ${hong.tel}`);
+
+      // for in에선 객체에서 key를 꺼내옴
+      for (key in hong) {
+        document.write(`${key} = ${hong[key]}<br>`); //dot연산자는 실행안됨
+      }
+      document.write(`<hr>`);
+
+      // 실습. 자리배치도
+      // 현재 강의실의 인원수와 한 줄에 3명씩 앉을 경우 자리배치도 출력하기
+      // if, for(중첩), table
+
+      document.write('<h2>좌석배치도</h2>');
+      let people = Number(prompt('인원수를 입력하세요'));
+      let line = Number(prompt('한 줄에 몇명이 앉습니까?'));
+      let num;
+      let count = 1;
+
+      if (people % line == 0) {
+        num = people / line;
+      } else {
+        num = parseInt(people / line + 1);
+      }
+
+      document.write('<table border=1>');
+      for (i = 1; i <= num; i++) {
+        document.write('<tr>');
+        for (j = 1; j <= line; j++) {
+          document.write(`<td>사람${count}</td>`);
+          count += 1;
+          if (count > people) break;
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+
+      // ------------------------------------------(↓선생님거)
+      document.write('<hr>');
+
+      let memNum = 16;
+      let colNum = 3;
+      let rowNum;
+
+      if (memNum % colNum == 0) rowNum = parseInt(memNum / colNum);
+      else rowNum = parseInt(memNum / colNum) + 1;
+      console.log(`총 줄 수 = ${rowNum}`);
+
+      document.write('<table border =1>');
+      for (i = 0; i < rowNum; i++) {
+        document.write('<tr>');
+        for (j = 1; j <= rowNum; j++) {
+          seatNo = i * colNum + j; //좌석번호
+          if (seatNo > memNum) break;
+          document.write(`<td> 좌석번호 ${seatNo} </td>`);
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+      // ------------------------------------------
+
+      //구구단
+      let dan, ii;
+      for (dan = 2; dan <= 9; dan++) {
+        document.write('<div>');
+        document.write(`<h3>${dan}</h3>`);
+        for (i = 1; i < +9; i++) {
+          document.write(`${dan} X ${i} = ${dan * i}<br>`);
+        }
+        document.write('</div>');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

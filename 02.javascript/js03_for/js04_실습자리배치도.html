@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/js04.css" />
+    <script>
+      // 실습. 자리배치도
+      // 현재 강의실의 인원수와 한 줄에 3명씩 앉을 경우 자리배치도 출력하기
+      // if, for(중첩), table
+
+      document.write('<h2>좌석배치도</h2>');
+      let people = Number(prompt('인원수를 입력하세요'));
+      let line = Number(prompt('한 줄에 몇명이 앉습니까?'));
+      let num;
+      let count = 1;
+
+      if (people % line == 0) {
+        num = people / line;
+      } else {
+        num = parseInt(people / line + 1);
+      }
+
+      document.write('<table border=1>');
+      for (i = 1; i <= num; i++) {
+        document.write('<tr>');
+        for (j = 1; j <= line; j++) {
+          document.write(`<td>사람${count}</td>`);
+          count += 1;
+          if (count > people) break;
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+      // ------------------------------------------
+      document.write('<hr>');
+
+      let memNum = 16;
+      let colNum = 3;
+      let rowNum;
+
+      if (memNum % colNum == 0) rowNum = parseInt(memNum / colNum);
+      else rowNum = parseInt(memNum / colNum) + 1;
+      console.log(`총 줄 수 = ${rowNum}`);
+
+      document.write('<table border =1>');
+      for (i = 0; i < rowNum; i++) {
+        document.write('<tr>');
+        for (j = 1; j <= rowNum; j++) {
+          seatNo = i * colNum + j; //좌석번호
+          if (seatNo > memNum) break;
+          document.write(`<td> 좌석번호 ${seatNo} </td>`);
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+    </script>
+  </head>
+  <body></body>
+</html>
