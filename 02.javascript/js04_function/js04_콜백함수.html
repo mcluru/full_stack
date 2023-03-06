@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="alert('버튼을 클릭')">인라인 - 클릭</button>
+    <button onclick="display()">함수호출 - 클릭</button>
+    <button id="callback">콜백함수 - 클릭</button>
+    <button id="arrow">화살표함수 - 클릭</button>
+    <script>
+      // 콜백함수 callback function
+      // 다른 함수의 인수로 사용하는 함수
+      function display() {
+        alert('버튼을 클릭했습니다');
+      }
+
+      const btn = document.querySelector('#callback');
+      btn.addEventListener('click', display);
+      // querySelector 함수 : 특정 CSS선택자에 해당하는 첫번째 요소를 찾아 반환하는 메소드
+      // id가 callback인 요소를 찾아 반환 ->btn 변수에 참조됨
+      // addEventListener 함수 : DOM 요소에 이벤트 핸들러 함수를 등록하는 메소드.(클릭,마우스이동 등의 이벤트 다룸)
+      // btn 변수에 있는 요소에 클릭 이벤트 발생 -> display 함수 실행.
+
+      const btn1 = document.querySelector('#arrow');
+      // btn1.addEventListener('click', function() { alert("화살표함수-클릭") })
+      // btn1.addEventListener('click', () => alert('화살표함수-클릭'))
+      btn1.addEventListener('click', () => {
+        document.write(`실행문1`);
+        document.write(`실행문2`);
+        document.write(`실행문3`);
+        alert('화살표함수 호출');
+      }); //실행할 문장이 여러개면 중괄호 씀
+
+      function fn01(name, age) {
+        alert(`Hello ${name}. 나이가 ${age}이군요`);
+      }
+
+      function getInfo(aaa) {
+        let userName = '홍길동';
+        let userAge = 1000;
+        aaa(userName, userAge);
+      }
+      getInfo(fn01);
+    </script>
+  </body>
+</html>

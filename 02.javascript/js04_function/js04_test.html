@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <body>
+      <button onclick="alert('버튼을 클릭')">인라인 - 클릭</button>
+      <button onclick="display()">함수호출 - 클릭</button>
+      <button id="callback">콜백함수 - 클릭</button>
+      <button id="arrow">화살표함수 - 클릭</button>
+      <div id="result"></div>
+      <script>
+        function display() {
+          alert('버튼을 클릭했습니다');
+        }
+
+        const btn = document.querySelector('#callback');
+        btn.addEventListener('click', display);
+
+        const btn1 = document.querySelector('#arrow');
+        btn1.addEventListener('click', () => {
+          const result = document.querySelector('#result');
+          result.innerHTML = `실행문1<br>실행문2<br>실행문3`;
+          alert('화살표함수 호출');
+        });
+      </script>
+    </body>
+  </body>
+</html>
