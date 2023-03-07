@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+      화살표함수 (Arrow Function)
+      */
+
+      // 1. 매개변수가 없는 경우
+      let hi1 = function () {
+        return '안녕하세요(1)';
+      };
+
+      hi = () => {
+        //소괄호 무조건 있어야됨
+        return '안녕하세요(2)';
+      };
+      hi = () => {
+        '안녕하세요(3)';
+      };
+      hi = () => '안녕하세요(4)';
+      console.log(hi()); //실행문이 한개만 있으면 중괄호 생략 가능
+
+      // ----------------------------------------
+      // 2. 매개변수가 하나만 있는 경우
+      let sayHello = function (name) {
+        return name + '님 안녕하세요(1)';
+      };
+
+      sayHello = (name) => {
+        return name + '님 안녕하세요(2)';
+      };
+      sayHello = (name) => {
+        //소괄호 없어도 되긴함
+        name + '님 안녕하세요(3)';
+      };
+      sayHello = (name) => name + '님 안녕하세요(4)';
+
+      console.log(sayHello('홍길동'));
+      // ----------------------------------------
+      // 3. 매개변수가 두개 이상일 경우
+      let 더하기 = function add(a, b) {
+        return a + b;
+      };
+      더하기 = (a, b) => a + b; //두개 이상일땐 소괄호 필수
+
+      console.log(더하기(10, 10));
+    </script>
+  </head>
+  <body></body>
+</html>
