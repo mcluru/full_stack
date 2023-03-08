@@ -9,6 +9,7 @@
       // TextNode : innerHTML vs innerText
       window.onload = () => {
         // 1. innerHTML
+        // 태그요소를 tag로 인식
         let output = '';
         output += '<ul>';
         output += '   <li>HTML</li>';
@@ -18,12 +19,13 @@
         output += '</ul>';
 
         document.write(output);
-        document.write(output);
-        document.body.innerHTML = output;
+        document.write(output); // 연달아 출력
+        document.body.innerHTML = output; // 위에 출력를 전부 없애고 출력됨
         document.write('<h1>Document Object Model(1)</h1>');
         document.body.innerHTML = '<h1>Document Object Model(2)</h1>';
 
         // 2. innerText
+        // 태그요소를 text로 인식
         document.body.innerText = '<h1>Document Object Model(3)</h1>';
       };
     </script>

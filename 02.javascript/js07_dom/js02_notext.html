@@ -15,14 +15,17 @@
         img.src = './images/newjeans.jpg';
         img.width = 300;
         img.height = 200;
-        document.body.appendChild(img, '<hr>');
+        document.body.appendChild(img); //appenChild는 한개의 노드만 추가 가능.
+
+        let br = document.createElement('br');
+        document.body.appendChild(br);
 
         // 2. setAttribute()
         let img1 = document.createElement('img');
         img1.setAttribute('src', './images/gidle.jpg');
         img1.setAttribute('width', 300);
         img1.setAttribute('height', 200);
-        document.body.appendChild(img1, '<hr>');
+        document.body.appendChild(img1);
       };
     </script>
   </head>
