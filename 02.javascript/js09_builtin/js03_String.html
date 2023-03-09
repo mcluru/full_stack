@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // String 객체
+      // String객체 생성방법 : 리터럴로 정의 / new String() 생성자함수 이용
+
+      // 1. 생성하는 방법
+      let str1 = 'Hello World';
+      let str2 = new String('Hello World');
+
+      // 2. 속성과 메서드
+      document.write(`<h3>${str1}</h3><br>`);
+      document.write(`1. ${str1} 문자열의 길이 = ${str1.length} <br>`);
+      document.write(`2. str1[0] : ${str1[0]}<br>`);
+      document.write(`3. str1.charAt(6) = ${str1.charAt(6)}<br>`);
+      document.write(`4. str1.concat(str2) = ${str1.concat(str2)}<br>`); //이어줌
+      document.write(`5. str1.indexOf('W') = ${str1.indexOf('W')}<br>`);
+      document.write(`6. str1.indexOf('o') = ${str1.indexOf('o')}<br>`); //처음부터 찾음
+      document.write(`7. str1.indexOf('o', 6) = ${str1.indexOf('o', 6)}<br>`); //6번쨰 자리부터 찾음
+      document.write(`8. str1.lastIndexOf('o') = ${str1.lastIndexOf('o')}<br>`);
+      document.write(
+        `9. str1.replace('o', 'x') = ${str1.replace('o', 'x')}<br>` //결과값을 리턴할뿐 원본데이터를 바꾸지 않음
+      );
+      document.write(`${str1}<br>`);
+      str1 = str1.replace('o', 'x');
+      document.write(`${str1}<br>`);
+
+      // indexOf와 seach는 검색결과가 없으면 -1 리턴.
+      // 두 메서드의 차이점 : indexOf는 정규식(regular express) 허용x
+      // indexOf는 검색위치를 인자로 사용 가능. search는 검색위치 사용 불가
+      document.write(`10. str1.search('lx') = ${str1.search('lx')}<br>`);
+
+      document.write(`11. str1.slice(1, 5) = ${str1.slice(1, 5)}<br>`); //start, end-1
+
+      let str3 = '홍길동,홍길순,손흥민,이강인';
+      let arr3 = str3.split(','); // 콤마를 기준으로 문자열 분리 후 배열에 저장
+      document.write(`12. str1.split(',') = ${arr3.length} : `);
+      for (let i in arr3) {
+        document.write(`${arr3[i]}/`);
+      }
+      document.write(`<br>`);
+
+      document.write(`13. str1.substr(1, 3) = ${str1.substr(1, 3)}<br>`); //start, count
+      document.write(`14. str1.substrting(1, 5) = ${str1.substring(1, 5)}<br>`); //start, end-1
+      document.write(`15. str1.substrting(1) = ${str1.substring(1)}<br>`); //start, end가 생략되면 끝까지
+
+      document.write(`16. str1.toLowerCase() = ${str1.toLowerCase()}<br>`);
+      document.write(`17. str1.toUpperCase() = ${str1.toUpperCase()}<br>`);
+      document.write(`<hr>`);
+
+      // -----------------------------------------------------------
+      // -----------------------------------------------------------
+      // 메서드체이닝 : 전체 소문자 -> 0~10개의 문자 자르기 -> 'name' 문자열을 연결
+      let output = 'Hello JavaScript';
+      output = output.toLocaleLowerCase();
+      output = output.substring(0, 10);
+      output = output.concat('name');
+      document.write(output, '<br>');
+      document.write(`메서드호출 = ${output}`);
+      document.write(`<hr>`);
+
+      let output2 = 'Hello JavaScript';
+      output2.toLocaleLowerCase().substring(0, 10).concat('name');
+      document.write(`메서드체이닝 = ${output2}<br>`);
+      document.write(
+        `메서드체이닝 = ${output2
+          .toLocaleLowerCase()
+          .substring(0, 10)
+          .concat('name')}`
+      );
+      // 메서드체이닝 이용한 문자열 조작은 output 변수에 저장되지 않음(따로 대입해줘야함)
+    </script>
+  </head>
+  <body></body>
+</html>
