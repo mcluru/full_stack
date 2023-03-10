@@ -1,0 +1,45 @@
+body {
+  width: 70%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+form {
+  padding: 10px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+#register {
+  width: 100%;
+  text-align: center;
+}
+
+#participantList {
+  margin: 20px 0;
+}
+
+#first {
+  font-size: 24px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.list > div:first-child {
+  width: 15%;
+}
+
+.delBtn {
+  border: none;
+  border-radius: 5px;
+  color: red;
+}
+
+.delBtn:hover {
+  cursor: pointer;
+}

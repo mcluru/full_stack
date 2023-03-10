@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./유시연.css">
+
+</head>
+<body>
+  <div class ="container">
+    <div style="text-align: center">
+    <h1>참가자목록</h1>   
+    <hr>
+    <form>
+      <table id="bookinfo">
+        <tr>
+          <td>이름</td>
+          <td><input type="text" id="name"></td>
+          
+          </tr>
+        <tr>
+          <td>학번</td>
+          <td><input type="text" id="stnum"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            
+            <br>
+            <button type="reset">취소하기</button>
+            <button id="save">추가하기</button>
+        </tr>
+      </table>  
+    </form>
+    <div id="studentlist">
+      <div class="student" id="first">
+        <div>이름</div>
+        <div>학번</div>
+        <div>취소</div>
+      </div>
+  </div>
+  <hr>
+  <ul id="bookList"></ul>
+
+  <script src="./js/유시연.js"></script>
+</body>
+</html>

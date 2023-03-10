@@ -1,0 +1,52 @@
+body {
+  align-content: center;
+}
+#listHead {
+  border: 1px solid rgb(174, 174, 240);
+}
+
+table {
+  width: 600px;
+  border-collapse: collapse;
+}
+
+#container {
+  background-color: #c1beee;
+  width: 600px;
+  height: 160px;
+}
+h1 {
+  /* background-color: aqua; */
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  align-items: center;
+}
+#info {
+  align-items: center;
+  text-align: left;
+  color: white;
+  /* border: 1px solid black; */
+  width: 500px;
+  height: 90px;
+  font-size: 1.5em;
+}
+input {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  width: 60%;
+  color: #999999;
+  border-radius: 5px;
+}
+.a {
+  text-align: right;
+}
+
+#savebtn {
+  text-align: left;
+  /* background-color: #090453; */
+}

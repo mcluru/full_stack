@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $("h1").css("color", "red"); //getElemetTagName('h1').css()
+        $("p").css("color", "green");
+        $("#target").css("color", "orange");
+        $("h1#target").css("color", "purple");
+      });
+    </script>
+    <!-- <style>
+      h1 {
+        color: red;
+      }
+      h1#target {
+        color: green;
+      }
+    </style> -->
+  </head>
+  <body>
+    <h1>Thankfully, it's not that serious.</h1>
+    <p>
+      5일 정부는 '제3자 변제'를 통한 징병 문제 해결 방안을 6일 공식 발표할
+      것으로 알려졌다. 오랫동안 한일 관계를 괴롭혀 온 병역보상 문제의 얽힌
+      실마리가 풀릴 수 있을지 귀추가 주목된다. 한편 양국은 강제징용 배상을 놓고
+      장기간 협상을 벌여왔다. 한일 관계는 대법원이 2018년 10월과 11월 각각
+      신일본제철과 미쓰비시중공업을 상대로 강제징용 피해자 배상을 청구하는 확정
+      판결을 내리면서 상황이 악화되기 시작했다. 이는 피고기업의 손해배상 책임을
+      인정한 역사적 판결이지만, 피고기업은 배상을 거부했고, 피해자는 피고기업
+      국내자산에 대한 강제 현금화 절차를 밟았다. 일본은 대법원 판결에 대한
+      사실상의 보복 조치로 2019년 7월 반도체·디스플레이 핵심 소재인 불화수소 등
+      3개 제품의 한국 수출을 제한했고, 8월에는 한국을 화이트리스트에서 제외했다.
+    </p>
+    <p id="target">
+      5일 정부는 '제3자 변제'를 통한 징병 문제 해결 방안을 6일 공식 발표할
+      것으로 알려졌다. 오랫동안 한일 관계를 괴롭혀 온 병역보상 문제의 얽힌
+      실마리가 풀릴 수 있을지 귀추가 주목된다. 한편 양국은 강제징용 배상을 놓고
+      장기간 협상을 벌여왔다. 한일 관계는 대법원이 2018년 10월과 11월 각각
+      신일본제철과 미쓰비시중공업을 상대로 강제징용 피해자 배상을 청구하는 확정
+      판결을 내리면서 상황이 악화되기 시작했다. 이는 피고기업의 손해배상 책임을
+      인정한 역사적 판결이지만, 피고기업은 배상을 거부했고, 피해자는 피고기업
+      국내자산에 대한 강제 현금화 절차를 밟았다. 일본은 대법원 판결에 대한
+      사실상의 보복 조치로 2019년 7월 반도체·디스플레이 핵심 소재인 불화수소 등
+      3개 제품의 한국 수출을 제한했고, 8월에는 한국을 화이트리스트에서 제외했다.
+    </p>
+    <h1 id="target">it's not that serious.</h1>
+  </body>
+</html>
