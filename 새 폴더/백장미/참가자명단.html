@@ -4,33 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/js07.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <title>참가자 명단</title>
+    <link rel="stylesheet" href="./css/참가자명단.css" />
   </head>
   <body>
-    <div id="container">
-      <h1>참가자 명단</h1>
-      <table id="info">
-        <tr>
-          <td class="a">이름</td>
-          <td><input type="text" id="name" /></td>
-          <td id="savebtn" rowspan="2">
-            <button id="save">신청하기</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="a">학과</td>
-          <td><input type="text" id="subject" /></td>
+    <header>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+        rel="stylesheet"
+      />
+    </header>
+    <div id="mytitle">
+      <div id="headtitle">
+        <h1>참가자 명단</h1>
+      </div>
+      <div id="inptitle">
+        이름 <input type="text" class="inpbox" id="name" /> 학과
+        <input type="text" class="inpbox" id="subject" />
+        <button class="custom-btn btn-16" id="save">신청하기</button>
+      </div>
+    </div>
+    <div>
+      <table id="userList">
+        <tr id="listHead">
+          <th id="blank">&nbsp&nbsp</th>
+          <th>이름</th>
+          <th>학과</th>
+          <th id="blank">&nbsp&nbsp</th>
         </tr>
       </table>
     </div>
-    <table id="userList">
-      <tr id="listHead">
-        <th>이름</th>
-        <th>학과</th>
-        <th>&nbsp;&nbsp;</th>
-      </tr>
-    </table>
-    <script src="./js/js07.js"></script>
+    <script src="./js/참가자명단.js"></script>
   </body>
 </html>

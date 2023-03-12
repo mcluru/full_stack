@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#mytitle {
+  /* background-color: green; */
+  height: 220px;
+  width: 100%;
+
+  color: white;
+  text-align: center;
+
+  background-image: linear-gradient(
+      /* 이미지 어둡게하기*/ 0deg,
+      rgba(49, 49, 49, 0.5),
+      rgba(47, 48, 69, 0.5)
+    ),
+    url("https://cdn.pixabay.com/photo/2017/02/08/12/46/moon-2048727_960_720.jpg");
+  background-size: cover;
+  background-position: 100% 42%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Noto Serif KR", serif;
+}
+#headtitle {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: large;
+  /* background-color: blue; */
+}
+/* #inptitle {
+  background-color: blue;
+} */
+#inptitle > input {
+  margin-right: 30px;
+  font-size: 90%;
+}
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.btn-16 {
+  border: none;
+  background: #363636;
+}
+.btn-16:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  direction: rtl;
+  z-index: -1;
+  box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+.btn-16:hover {
+  color: #fff700;
+}
+.btn-16:hover:after {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+.btn-16:active {
+  top: 2px;
+}
+#userList {
+  max-width: 1000px;
+  width: 95;
+  margin: auto;
+  margin-top: 20px;
+}
+table {
+  width: 100%;
+  /* border: 1px solid #444444; */
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+th {
+  border: 1px solid #444444;
+  height: 50px;
+  background-color: #444444;
+  /* background-color: green; */
+  color: white;
+}
+td {
+  /* border: 1px solid #444444; */
+  /* background-color: green; */
+  height: 25px;
+  text-align: center;
+}
+#blank {
+  border: 1px solid transparent;
+  background-color: transparent;
+  width: 40px;
+}
+.delBtn {
+  padding: 5px;
+  margin: auto;
+  margin-left: 10px;
+  color: red;
+}
