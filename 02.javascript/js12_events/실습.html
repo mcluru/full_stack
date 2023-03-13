@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .menu {
+        /* background-color: aqua; */
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+      }
+      .sidebar {
+        background-color: rgb(63, 63, 63);
+        background-image: linear-gradient(
+            rgba(40, 45, 70, 0.3),
+            rgba(29, 17, 12, 0.3)
+          ),
+          url('https://cdn.pixabay.com/photo/2013/01/05/20/00/milky-way-74005_960_720.jpg');
+        background-position: 0%;
+        background-size: cover;
+        width: 220px;
+        padding: 20px;
+        right: -220px;
+        display: none;
+      }
+      ul {
+        list-style-type: none;
+        font-size: 1.2em;
+      }
+      li {
+        margin: 10px 0;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      #bttn {
+        padding: 5px;
+      }
+    </style>
+    <script>
+      // toggle(), active속성 이용하기
+      $(document).ready(function () {
+        $('#bttn').click(function () {
+          $('.sidebar').toggle('active');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>실습2. 메뉴</h1>
+
+    <div class="menu">
+      <div>
+        <button id="bttn">&#9776;</button>
+      </div>
+      <div class="sidebar">
+        <nav id="nav">
+          <ul>
+            <li><a href="#">Javascript</a></li>
+            <li><a href="#">Typescript</a></li>
+            <li><a href="#">Node.js</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
