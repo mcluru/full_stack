@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/Flick/jquery-ui.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      #button {
+        padding: 5px;
+        margin: 0;
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      $(function () {
+        $('#button').hover(
+          function () {
+            $(this).addClass('ui-state-hover');
+          },
+          function () {
+            $(this).removeClass('ui-state-hover');
+          }
+        );
+
+        $('#button').click(function () {
+          $(this).toggleClass('ui-state-active');
+        });
+
+        $('h1').hover(
+          function () {
+            $(this).addClass('ui-state-hover');
+          },
+          function () {
+            $(this).removeClass('ui-state-hover');
+          }
+        );
+      });
+    </script>
+  </head>
+  <body>
+    <div id="button" class="box ui-state-default ui-coner-all">
+      <p>
+        풋볼런던은 '살라는 손흥민에 기회를 열어줬다. 살라는 최근 첼시와의
+        잉글랜드축구협회(FA)컵에서 부상을 입었다. 최종전을 앞두고 돌아올
+        가능성이 있다. 문제는 살라를 최종전에 선발로 낼지, 아니면 6일 뒤 열리는
+        레알 마드리드와의 유럽챔피언스리그(UCL) 결승전에 투입할지다. 살라
+        입장에선 득점왕을 위해 선발로 나서고 싶을 것이다. 손흥민은 최종전에서
+        노리치 시티와 붙는다. 노리치 시티는 올 시즌 37경기에서 79실점을 했다.
+        끔찍한 수비력이었다. 살라는 지난 시즌 해리 케인(토트넘)에 밀려 득점왕에
+        오르지 못했다. 토트넘이 2연속 득점왕을 배출할지 클롭에 달려있다'고
+        덧붙였다.
+      </p>
+    </div>
+
+    <button id="button" class="box ui-state-default ui-coner-all">
+      Button
+    </button>
+  </body>
+</html>

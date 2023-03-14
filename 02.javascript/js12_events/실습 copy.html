@@ -12,41 +12,42 @@
         padding: 0;
       }
       .menu {
-        background-color: aqua;
         display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        transition: all 0.3s ease-in-out;
       }
-      .sidebar {
-        width: 220px;
-        top: 0;
-        /* height: 100%; */
-        position: relative;
+      #bttn {
+        position: fixed;
+        padding: 15px;
+        top: 30px;
         right: 0;
-
-        background-color: rgb(63, 63, 63);
-        /* background-image: linear-gradient(
-          rgba(40, 45, 70, 0.3),
-          rgba(29, 17, 12, 0.3)
+        border: none;
+        background-color: rgb(49, 49, 63);
+        color: white;
+        transition: transform 0.3s ease-in-out;
+      }
+      #nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        padding: 2em 5em;
+        padding-left: 2em;
+        rgb(63, 63, 63);
+        background-image: linear-gradient(
+            rgba(40, 45, 70, 0.3),
+            rgba(29, 17, 12, 0.3)
           ),
-          url("https://cdn.pixabay.com/photo/2013/01/05/20/00/milky-way-74005_960_720.jpg"); */
-        /* background-position: 0%; */
-        /* background-size: cover; */
-        padding: 10px 0 0 20px;
-        transition: all 0.3s ease-in-out;
+          url('https://cdn.pixabay.com/photo/2013/01/05/20/00/milky-way-74005_960_720.jpg');
+        background-position: 0%;
+        background-size: cover;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
       }
-      .sidebar.active {
-        right: -100%;
-        /* display: none; */
+      #nav.active {
+        transform: translateX(0%);
       }
-      /* .menu.active {
-        padding-right: 30px;
-        right: calc(-100% + 60px);
-      } */
-
+      #bttn.active {
+        transform: translateX(-198px);
+      }
       ul {
         list-style-type: none;
         font-size: 1.2em;
@@ -58,17 +59,13 @@
         color: white;
         text-decoration: none;
       }
-      #bttn {
-        width: 30px;
-        padding: 5px;
-      }
     </style>
     <script>
       // toggle(), active속성 이용하기
       $(document).ready(function () {
-        $("#bttn").click(function () {
-          $(".sidebar").toggleClass("active");
-          $(".menu").toggleClass("active");
+        $('#bttn').click(function () {
+          $('#nav').toggleClass('active');
+          $('#bttn').toggleClass('active');
         });
       });
     </script>
