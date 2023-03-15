@@ -12,9 +12,9 @@
         padding: 0;
       }
 
-      li {
+      /* li {
         list-style: none;
-      }
+      } */
       a {
         font-style: 'D2Coding';
         font-size: 12px;
@@ -24,7 +24,7 @@
 
       #visual {
         width: 500px;
-        margin: 0;
+        /* margin: 0; */
         position: relative;
       }
 
@@ -44,7 +44,7 @@
       #control {
         position: absolute;
         width: 100%;
-        left: 0;
+        /* left: 0; */
         bottom: 30px;
         text-align: center;
       }
@@ -55,7 +55,7 @@
         height: 26px;
         background: #000;
         color: #fff;
-        line-height: 26px; /* 텍스트가 가운데로 옴. 무슨 기능이지?*/
+        line-height: 26px; /*행간 길이 조절*/
         font-style: 0.8em;
         border-radius: 14px;
         margin: 0 2px;
@@ -73,7 +73,7 @@
       $(() => {
         $('#control a').click(function () {
           let num = Number($(this).text()) - 1;
-          $(this).addClass('on').siblings().removeClass('on'); //siblings가 뭐임?
+          $(this).addClass('on').siblings().removeClass('on'); //siblings : 형제요소
           $('#pic > div')
             .filter(':visible')
             .stop(true)
