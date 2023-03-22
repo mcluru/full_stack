@@ -1,8 +1,11 @@
 /* 연습문제 */
 -- ex01) emp테이블에서 ename, hiredate, 근속년, 근속월, 근속일수 출력, deptno = 10;
 -- months_between, round, turnc, 개월수계산(/12), 일수계산(/365, /12)
-select * from emp
-where deptno = 10;
+select * from emp;
+select ename
+	, round(months_between(sysdate, hiredate)) 근속년
+	from emp
+	where deptno = 10;
 
 
 -- ex02) student에서 birthday중 생일 1월의 학생의 이름과 생일을 출력(YYYY-MM-DD)
