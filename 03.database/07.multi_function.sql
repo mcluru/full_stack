@@ -179,7 +179,146 @@ select count(*) from professor
 group by rollup(deptno, position);
 
 select deptno, position 
-, count(*) 교수인원수
-,sum(pay) 급여합계
-from professor
-group by rollup(deptno, position);
+	, count(*) 교수인원수
+	,sum(pay) 급여합계
+	from professor
+	group by rollup(deptno, position);
+
+
+
+-- cube()
+-- 1. 부서별 직급별 사원수 평균급여
+-- 2. 부서별			 사원수 평균급여
+-- 3.			  직급별 사원수 평균급여
+-- 4. 전체				 사원수 평균급여
+
+select deptno, position 
+	, count(*) 교수인원수
+	,sum(pay) 급여합계
+	from professor
+	group by cube(deptno, position);
+	
+	
+select deptno
+	, job
+	, count(*) 사원수
+	, round(avg(sal+nvl(comm,0)), 2) 평균급여
+	from emp group by rollup(deptno, job);
+	
+select deptno
+	, job
+	, count(*) 사원수
+	, round(avg(sal+nvl(comm,0)), 2) 평균급여
+	from emp group by cube(deptno, job);
+
+
+/*
+	E. 순위함수
+	
+	1. rank()				: 순위부여함수, 동일처리 1,2,2,4
+	2.dense_rank()	: 순위부여함수, 동일처리 1,2,2,3
+	3. row_number() : 행번호를 제공하는 함수, 동일처리 불가 1,2,3,4
+	
+	※ 주의사항 ※
+	순위함수는 반드시 order by와 같이 사용
+*/
+-- 1. rank()
+-- 1) 특정자료별로 순위 : rank(조건값) within group(order by 조건값, 컬럼[asc|desc])
+-- 2) 전체자료기준 순위 : rank() over(order by 조건값, 컬럼[ascc|desc])
+
+-- 실습
+-- 1) 특정조건의 순위
+-- SMITH사원이 알파벳순 몇번째인지
+select rownum, ename from emp;
+select rownum, emp.ename from emp;
+select rownum, e.ename from emp e;
+select rownum, ename from emp order by ename;
+select rownum 로우넘, t1.rn, t1.ename from (select rownum rn, ename from emp order by ename) t1;
+
+select rank('SMITH') within group(order by ename) from emp;
+select rank('SMITH') within group(order by ename asc) from emp;
+select rank('SMITH') within group(order by ename desc) as 사원명 from emp;
+
+-- 2) 전체자료에서의 순위
+-- emp에서 각 사원들의 급여순위는?
+-- 급여가 작은순(asc), 급여가 많은순(desc)
+select * from emp order by sal;
+
+select ename, sal
+	, rank() over(order by sal) --급여 적은순
+	, rank() over(order by sal desc) --급여 많은순
+	from emp;
+	
+-- 2. dense_rank()
+select ename, sal
+	, rank() 			 over(order by sal) --rank()
+	, dense_rank() over(order by sal) --dense_rank()
+	from emp;
+
+-- 3. row_number() : 행번호
+select ename, sal
+	, rank() 			 over(order by sal) rank --rank()
+	, dense_rank() over(order by sal) dense_rank --dense_rank()
+	, row_number() over(order by sal) row_number --row_number()
+	from emp;
+
+
+/*
+ E. 누적함수
+ 
+ 1. sum(컬럼) over([partition by 컬럼...]order by 멀럼 [asc|desc]) : 누계(누적)를 구하는 함수
+ 2. ratio_to_report() : 비율을 구하는 함수
+*/
+
+-- 1. sum() over()
+select * from panmae;
+select * from panmae where p_store=1000 order by 1;
+
+-- 1000대리점의 판매일자별 누계액 구하기
+select p_date
+	, p_code
+	, p_qty
+	, p_total
+	, sum(p_total)
+	from panmae
+	where p_store=1000
+	group by p_date, p_code, p_qty, p_total
+	order by 1;
+	
+select p_date
+	, p_code
+	, p_qty
+	, p_total
+	, sum(p_total) over(order by p_date) 일자별판매누계액
+	from panmae
+	where p_store=1000 order by 1;
+	
+-- 판매일자별 제품별 판매누계액
+select p_date
+	, p_code
+	, p_qty
+	, p_total
+	, sum(p_total) over(order by p_date, p_code) 판매누계액
+	from panmae
+	where p_store=1000 order by 1;
+	
+-- 제품별/대리점별 기준으로 누계구하기(순서는 판매일자)
+select p_code
+	, p_store
+	, p_date
+	, p_total
+	, sum(p_total) over(partition by p_code, p_store order by p_date) 판매누계액
+	from panmae;
+
+
+-- 2. ratio_to_report()
+-- 판매비율
+select p_code
+		 , p_store
+		 , sum(p_qty) over() 총판매수량
+		 , round(ratio_to_report(sum(p_qty)) over() * 100, 2) "수량(%)"
+		 , p_total
+		 , sum(p_total) over() 총판매금액
+		 , round(ratio_to_report(sum(p_total)) over() * 100, 2) "금액(%)"
+  from panmae
+ group by p_code, p_qty, p_store, p_total;
