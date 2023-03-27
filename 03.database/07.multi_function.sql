@@ -161,6 +161,8 @@ select deptno
 	from emp
 	group by rollup(deptno, job);
 	
+	
+	select * from emp;
 
 select deptno
 	, job

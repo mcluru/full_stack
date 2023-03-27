@@ -85,9 +85,9 @@ select deptno 부서번호, sal 급여
 
 -- 8. emp 테이블을 사용하여 각 사원의 급여액이 전체 직원 급여총액에서 몇 %의 비율을 
 --    차지하는지 출력하세요. 단 급여 비중이 높은 사람이 먼저 출력되도록 하세요
-select 
+select ename,
 	sal 급여
-	, round(ratio_to_report(sal) over(),2) "비율(%)"
+	, round(ratio_to_report(sal) over()*100,2) "비율(%)"
 	from emp
 	order by sal desc;
 
@@ -97,8 +97,8 @@ select
 --     차지하는지를 출력하세요. 단 부서번호를 기준으로 오름차순으로 출력하세요.
 select * from emp;
 select deptno 부서
-	, sum(sal) 급여
-	, round(ratio_to_report(sum(sal)) over(),2) 부서별비율
+	, sum(sal) 급여합계
+	, round(ratio_to_report(sum(sal)) over()*100,2) 부서별비율
 	from emp
 	group by deptno
 	order by 1;

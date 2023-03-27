@@ -14,6 +14,7 @@ select emp.name 사원명, emp.position 현재직급, to_char(emp.pay, '99,999,9
     
 -- ex03) emp2, p_grade에서 사원명, 나이, 직급, 예상직급(나이로 계산후 해당 나이의
 --       직급), 나이는 오늘날자기준 trunc로 소수점이하 절삭 
+select * from emp2;
 select 
 e.name 사원명,trunc(months_between(sysdate,birthday)/12) 나이, e.position 직급, p.position 예상직급
 	from emp2 e inner join p_grade p on trunc(months_between(sysdate,birthday)/12) between p.s_age and p. e_age;
@@ -24,6 +25,11 @@ e.name 사원명,trunc(months_between(sysdate,birthday)/12) 나이, e.position �
 select c.gname, c.point, g.gname
 from customer c left outer join gift g on c.point between g.g_start and g.g_end
 where c.point > 600001 ;
+
+
+select c.gname, c.point, g.gname
+from customer c join gift g on c.point >= g.g_start
+and g.gname = 'Notebook' ;
 
 
 
@@ -43,4 +49,5 @@ select
 select e1.empno 사원번호, e1.ename 사원명, e1.hiredate 입사일, count(e2.hiredate) 빠른입사인원수
 	from emp e1 left join emp e2
 	on e1.hiredate > e2.hiredate
-	group by e1.empno, e1.ename, e1.hiredate;
+	group by e1.empno, e1.ename, e1.hiredate
+	order by 4;
