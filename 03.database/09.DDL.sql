@@ -142,7 +142,7 @@ select * from temptable;
 	1. 컬럼 추가		 : alter table 테이블명 add(추가걸럼명 데이터타입)
 	2. 컬럼명 변경		 : alter table 테이블명 rename column 변경전이름 to 변경후이름
 	3. 데이터타입 변경 : alter table 테이블명 modify(변경할컬럼 변경할데이터타입)
-	4. 컬럼 삭제		 : alter table 테이블명 drop colum 삭제할컬럼명
+	4. 컬럼 삭제		 : alter table 테이블명 drop column 삭제할컬럼명
 */
 
 -- 실습. dept2테이블을 dept6로 복사
