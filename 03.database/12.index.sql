@@ -121,7 +121,7 @@ select * from idx_test order by no; -- 0.124s
 select * from idx_test where no = 9000; -- 0.023s
 
 -- b. 인덱스 생성후 조회하기
-create unique index idx_test_no on idx_test(no);
+create index idx_test_no on idx_test(no);
 
 select * from idx_test order by no; -- 0.115s
 select * from idx_test where no = 9000; -- 0.004s

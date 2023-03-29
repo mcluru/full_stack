@@ -79,6 +79,7 @@ insert all
 select * from professor;
 
 
+
 -- 3. insert all(2)
 -- 동일자료를 각각 다른 테이블에 추가하는 방법
 drop table prof_3;
