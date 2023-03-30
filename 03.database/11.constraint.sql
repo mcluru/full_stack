@@ -46,6 +46,8 @@ select * from all_constraints;
 select * from user_constraints;
 select * from user_constraints
 	where table_name like 'NEW_EMP%' ;
+select * from user_constraints
+	where table_name = 'NEW_EMP_1' ;
 
 
 -- 실습1. 데이터 추가하기 (제약조건 테스트)
