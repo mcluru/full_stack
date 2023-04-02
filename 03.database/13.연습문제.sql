@@ -20,9 +20,13 @@ select max(height) 최대키, max(weight) 최대몸무게, (select dname from de
 select * from v_std_01;
 
 -- 선생님 풀이 
+create or replace view v_std_01 as
 select dpt.deptno 학과번호, dpt.dname 학과명, std.최대신장, std.최대체중 
 	from department dpt, (select deptno1, max(height) 최대신장, max(weight) 최대체중 from student group by deptno1) std
 	where dpt.deptno = std.deptno1;
+
+select * from v_std_01;
+drop view v_std_01;
 
 
 
@@ -33,7 +37,8 @@ select * from student;
 select * from department;
 
 -- 선생님 풀이
-create or replace view v_max_by_std as
+--create or replace view v_max_by_std as
+
 select std2.name
 		, dpt.dname
 		, std1.최대신장
