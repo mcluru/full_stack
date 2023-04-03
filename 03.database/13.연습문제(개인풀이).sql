@@ -61,7 +61,6 @@ select std1.deptno1, std2.name, std1.최대키
 -- ex04) student에서 학생키가 동일학년의 평균키보다 큰 학생들의 학년과 이름과 키
 -- 해당 학년의 평균키를 출력 단, inline view로
 
--- 선생님 풀이
 -- 1. 학년별 평균키
 select * from student;
 select grade, round(avg(height),1) 평균키 from student group by grade;
@@ -81,6 +80,9 @@ select std1.grade, std2.name, std2.height, std1.평균키
 
 -- ex05) professor에서 교수들의 급여순위와 이름, 급여출력 단, 급여순위 1~5위까지
 -- create.....
+select rownum, pro.*
+	from (select name, pay from professor order by pay desc) pro
+	where rownum <=5;
 
 
 
@@ -88,7 +90,7 @@ select std1.grade, std2.name, std2.height, std1.평균키
 
 -- ex06) 교수번호정렬후 3건씩해서 급여합계와 급여평균을 출력
 -- hint) 
-
-
-
--- materialized view란 것도 있음
+select ceil(rownum/3) "번호(3건씩묶음)", sum(pay) 급여합계, round(avg(pay),0) 급여평균
+	from (select rownum 번호, profno, name, pay from professor)
+	group by ceil(rownum/3)
+	order by ceil(rownum/3);
