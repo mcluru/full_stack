@@ -264,7 +264,7 @@ select * from sungjuk;
 select * from sungresult;
 
 create or replace procedure pro_25 is
-
+	
 begin
 
 
@@ -275,3 +275,105 @@ end pro_25;
 call pro_25();
 
 select count(*) +1 from sungresult where tot>180;
+
+
+----------선생님 풀이
+
+create or replace procedure pro_25 is
+
+	cursor c_sungjuk is select * from sungjuk;--1.얘를 읽고
+	cursor c_sungresult is select hakbun, tot from sungresult;--2.여기에 result를 insert
+																										-- 3. rank update
+	
+	v_hakbun sungjuk.hakbun%type;
+	v_name	 sungjuk.name%type;
+	v_kor		 sungjuk.kor%type;
+	v_eng		 sungjuk.eng%type;
+	v_mat		 sungjuk.mat%type;
+	
+	v_tot		 sungresult.tot%type;  --그냥 number로 해도 상관없음
+	v_avg		 sungresult.avg%type;
+	v_hak		 sungresult.hak%type;
+	v_pass 	 sungresult.pass%type;
+	v_rank 	 sungresult.rank%type;
+
+begin
+	-- 1. 성적결과 초기화
+	delete from sungresult;
+	
+	-- 2. 성적결과를 생성
+	open c_sungjuk;
+	
+	loop
+		fetch c_sungjuk into v_hakbun, v_name, v_kor, v_eng, v_mat;
+		exit when c_sungjuk%notfound;
+		
+		v_tot := v_kor + v_eng + v_mat;
+		v_avg := round(v_tot/3,2);
+		
+		if v_avg >= 95 then v_hak := 'A+';
+			elsif v_avg >= 90 then v_hak := 'A0';
+			elsif v_avg >= 85 then v_hak := 'B+';
+			elsif v_avg >= 80 then v_hak := 'B0';
+			elsif v_avg >= 75 then v_hak := 'C+';
+			elsif v_avg >= 70 then v_hak := 'C0';
+			elsif v_avg >= 65 then v_hak := 'D+';
+			elsif v_avg >= 60 then v_hak := 'D0';
+			else v_hak := 'F';
+		end if;
+		
+		if v_avg >= 70
+			then v_pass := 'pass';
+			else v_pass := 'fail';
+		end if;
+		
+		insert into sungresult(hakbun, name, kor, eng, mat, tot, avg, hak, pass)
+		            values(v_hakbun, v_name, v_kor, v_eng, v_mat, v_tot, v_avg, v_hak, v_pass);		
+	end loop;
+	
+	close c_sungjuk;
+	
+	
+	-- 3. 성적별 등수 만들기
+	open c_sungresult;
+	
+	loop
+	
+		fetch c_sungresult into v_hakbun, v_tot;
+		exit when c_sungresult%notfound;
+		
+		select count(*) + 1
+		  into v_rank
+		  from sungresult
+		 where tot > v_tot;
+		 
+	  update sungresult
+		   set rank = v_rank
+		 where hakbun = v_hakbun;
+	end loop;
+
+  close c_sungresult;
+
+
+
+	exception when others then
+		dbms_output.put_line('예외가 발생했습니다');
+end pro_25;
+call pro_25();
+
+select * from sungresult;
+select count(*) +1 from sungresult where tot>180;
+
+
+
+
+--for문으로 실습하기
+
+
+
+
+
+
+
+
+
