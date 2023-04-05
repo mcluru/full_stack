@@ -122,6 +122,7 @@ create table month_salary(
 );
 select * from month_salary;
 drop table month_salary;
+delete from month_salary;
 
 
 -- 실습1. 부서별 총사원수, 급여총액, 급여평균을 업데이트하기
@@ -129,14 +130,35 @@ drop table month_salary;
 -- 1) 초기화 : 현재일 기준으로 insert(부서별)를 하고, 마감일, 부서번호, 0, 0, 0
 insert into month_salary									--insert values 부분에 select절 넣을 수 있음.
 	select last_day(sysdate)								--근데 넣을 수 있단 내용 어디있었지?
-		  , emp.department_id								--'-`
+		  , e.department_id									--'-`
 		  , 0
 		  , 0
 		  , 0
-	  from hr.EMPLOYEES emp
-	 group by emp.DEPARTMENT_ID;
+	  from hr.EMPLOYEES e
+	 where e.DEPARTMENT_ID is not null
+	 group by e.DEPARTMENT_ID;
 
+select * from month_salary;
 select * from hr.EMPLOYEES;
 -- 2) 초기화 후 update(사원수, 급여총액, 급여평균)
+update month_salary
+	set emp_count = (select count(*) from hr.EMPLOYEES where department_id = month_salary.department_id group by department_id)
+	  , total_salary = (select sum(salary) from hr.EMPLOYEES where department_id = month_salary.department_id group by department_id)
+		, average_salary = (select round(avg(salary),1) from hr.EMPLOYEES where department_id = month_salary.department_id group by department_id);
 
+
+
+-- b. 1 step으로 처리
+select * from month_salary;
+select * from hr.EMPLOYEES;
+
+insert into month_salary
+	select last_day(sysdate)	
+			 , e.department_id
+			 , count(*)
+			 , sum(e.salary)
+			 , round(avg(salary),1)
+	from hr.EMPLOYEES e
+	where e.DEPARTMENT_ID is not null
+	group by e.DEPARTMENT_ID;
 
