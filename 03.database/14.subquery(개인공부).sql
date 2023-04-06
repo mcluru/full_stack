@@ -162,3 +162,52 @@ insert into month_salary
 	where e.DEPARTMENT_ID is not null
 	group by e.DEPARTMENT_ID;
 
+/*
+	다중행(단일열+다중열) 연산자
+	in : =
+	>any : 최소값 반환
+	<any : 최대값 반환
+	<all : 최소값 반환
+	>all : 최대값 반환
+*/
+
+
+-- 실습1. in연산자
+-- a. 비교연산
+select * from hr.departments;
+select * from hr.locations;
+
+select dpt.department_name
+	from hr.departments dpt
+		 , hr.locations loc
+	where loc.country_id = 'US'												--작은 범위로 먼저 축소시키고
+	  and loc.location_id = dpt.location_id;					--테이블조인
+
+
+select location_id from hr.locations where country_id = 'US';
+
+-- b. in연산
+select dpt.department_name
+	from hr.departments dpt
+	where dpt.location_id in (select location_id from hr.locations where country_id = 'US'); --이 쿼리가 성능이 더 좋다고함
+
+
+-- c. any, all연산자
+-- salary가 30부서의 최소급여보다 많은 사원을 조회
+select * from hr.employees;
+select min(salary)
+	from hr.employees
+	where department_id = 30
+	group by department_id;
+
+select *
+	from hr.employees
+	where 
+
+
+
+
+
+
+
+
