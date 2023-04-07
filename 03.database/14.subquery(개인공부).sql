@@ -195,14 +195,27 @@ select dpt.department_name
 -- c. any, all연산자
 -- salary가 30부서의 최소급여보다 많은 사원을 조회
 select * from hr.employees;
+
+	-- 단일행 단일열 (<)
 select min(salary)
 	from hr.employees
-	where department_id = 30
+	where department_id = 30						--먼저 30부서의 최소급여를 구하고(단일행 단일열)
 	group by department_id;
 
-select *
-	from hr.employees
-	where 
+select first_name||' '||last_name
+			, salary
+	from hr.employees										-- where절 서브쿼리로 사용
+	where salary > (select min(salary) from hr.employees where department_id = 30 group by department_id);
+
+	-- 다중행
+select salary
+	from hr.employees										-- 30qntjdml 급여들을 구하고 (다중행 단일열)
+	where department_id = 30;
+
+select first_name||' '||last_name
+			, salary
+	from hr.employees										-- 구한것의 최소값을 전체 급여와 비교함
+	where salary >any (select salary from hr.employees where department_id = 30);
 
 
 
