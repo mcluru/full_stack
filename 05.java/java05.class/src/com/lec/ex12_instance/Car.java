@@ -15,5 +15,13 @@ public class Car {
 	String model;						// 객체멤버
 	int speed;							// 객체멤버
 	
+	@Override
+	public String toString() {
+		return this.company + ", " + this.model + ", " + this.speed;
+	}
+	
+	public static void xxx() {
+		System.out.println("static method 호출");
+	}
 	
 }
