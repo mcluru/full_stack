@@ -20,20 +20,29 @@ public class MethodMain1 {
 		
 		// 1. 제네릭메서드
 		Box<Integer> box1 = Util.boxing(1000);
-		int val1 = box1.get();
+		System.out.println(box1.get());
 		
+		Box<String> box2 = Util.boxing(new String("망치"));
+		System.out.println(box2.get());
 		
+		Box<Apple> box3 = Util.boxing(new Apple());
+		System.out.println(box3.get());
 		
+		Box<Car> box4 = Util.boxing(new Car());
+		System.out.println(box4.get());
+		
+		System.out.println();
 		
 		
 		// 2. 일반메서드
 		Box g_box = null;
-		g_box = Util.method(1000);
-		g_box = Util.method(new String("망치"));
-		g_box = Util.method(new Car());
-		g_box = Util.method(new Apple());
-		int g_val = (int)g_box.get();
+//		g_box = Util.method(1000);
+//		g_box = Util.method(new String("망치"));
+//		g_box = Util.method(new Car());
+//		g_box = Util.method(new Apple());
 		
+		g_box = Util.method(new Robot());
+		System.out.println(g_box.get());
 		
 	}
 
