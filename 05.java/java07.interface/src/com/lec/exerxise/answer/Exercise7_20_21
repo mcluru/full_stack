@@ -1,0 +1,9 @@
+[7-20]
+p.x = 100
+Child Method
+c.x = c.x
+Child Method
+
+
+[7-21]
+ Movable인스턴스를 구현한 클래스, 그 자손
