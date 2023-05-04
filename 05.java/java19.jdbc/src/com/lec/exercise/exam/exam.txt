@@ -1,0 +1,11 @@
+실습 mariadb에 scott의 emp/dept와 동일하게 테이블생성
+1. reverse engineering 테이블생성
+2. 또는 하드코딩
+3.
+InsertMain.java
+selectMain.java
+UpdateMain.java
+DeleteMain.java
+
+mariadb 접속정보
+getConnection("jdbc:mariadb://localhost/board", "root", "12345");
