@@ -1,11 +1,11 @@
 package com.lec.exercise.answer;
 
-public class Board {
+public class Member {
 
 	public static void main(String[] args) {
 		
-		BoardMenu menu = new BoardMenu(1.0);
-		menu.mainBoardMenu();
+		MemberMenu menu = new MemberMenu(1.0);
+		menu.mainMemberMenu();
 		
 	}
 

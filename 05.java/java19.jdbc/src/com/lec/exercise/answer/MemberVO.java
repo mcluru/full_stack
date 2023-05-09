@@ -1,6 +1,6 @@
 package com.lec.exercise.answer;
 
-public class BoardVO {
+public class MemberVO {
 	
 	private String member_id;
 	private String member_pw;
@@ -10,7 +10,7 @@ public class BoardVO {
 	private String member_email;
 	
 	// 기본값으로 초기화하는 기본생성자
-	public BoardVO() {
+	public MemberVO() {
 		this.member_id = null;
 		this.member_pw = null;
 		this.member_name = null;
