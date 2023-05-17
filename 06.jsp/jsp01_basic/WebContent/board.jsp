@@ -1,16 +1,21 @@
-<%@page import="com.lec.board.BoardMenu"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*"%>
-
+<%@page import="com.lec.board.Board"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.lec.board.BoardList"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	// db connect
-	// Connection
-	// PreparedStatement
-	// ResultSet
-	// List<Board> boards = new ArrayList<>();
+	BoardList bl = new BoardList();
+	ArrayList<Board> boards = bl.getBoardList();
+	
+	String bd = "<table class='table' border='1'>";
+	for(Board board:boards) {
+		bd += "<tr><td>"
+		   + board.getBno()     + "</td><td>"
+		   + board.getSubject() + "</td><td>"
+		   + board.getWriter()  + "</td><td>"
+		   + board.getContent() + "</td></tr>";
+	}
+	bd += "</table>";
 %>
-<% request.setCharacterEncoding("utf-8");%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +26,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-<!-- 	<c:forEach var="board" items=${boards}>
-		<table><tr><td></td></tr></table>
-	</c:forEach> -->
-	
-<%
-BoardMenu menu = new BoardMenu(1.0);
-//menu.mainMenu();
-menu.mainBoardMenu();
-%>
+<%= bd %>
 
 </body>
 </html>
