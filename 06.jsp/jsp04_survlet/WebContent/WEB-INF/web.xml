@@ -4,9 +4,23 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <!--  -->
+  <servlet>
+  	<servlet-name>hello</servlet-name>
+  	<servlet-class>com.lec.servlet.HelloWorld</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/xxx</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 위 내용 대신 @WebServlet("/hello")사용하면 간단함 -->
+  
 </web-app>
