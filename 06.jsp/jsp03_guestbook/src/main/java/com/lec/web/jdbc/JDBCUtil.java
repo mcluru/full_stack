@@ -16,7 +16,7 @@ public class JDBCUtil {
 		}
 	}
 	
-	public void rollback(Connection conn) {
+	public static void rollback(Connection conn) {
 		try {
 			if(conn != null) conn.rollback();
 		} catch (Exception e) {

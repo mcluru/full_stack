@@ -1,11 +1,11 @@
 package com.lec.web.model;
 
 public class Message {
-	
+
 	private int id;
 	private String guestName;
 	private String password;
-	private String massage;
+	private String message;
 	
 	public int getId() {
 		return id;
@@ -26,10 +26,10 @@ public class Message {
 		this.password = password;
 	}
 	public String getMessage() {
-		return massage;
+		return message;
 	}
-	public void setMessage(String email) {
-		this.massage = email;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	public boolean hasPassword() {
@@ -37,6 +37,6 @@ public class Message {
 	}
 	
 	public boolean matchPassword(String pwd) {
-		return password != null && !password.equals(pwd);
+		return password != null && password.equals(pwd);
 	}
 }
