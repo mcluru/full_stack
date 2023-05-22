@@ -9,14 +9,9 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<h1>Insert</h1>
-	${ board.toString() } <hr />
-<%-- 	${ board.getBno() } <br />
-	${ board.getSubject() } <br />
-	${ board.getWriter() } <br />
-	${ board.getContent() } <br />
-	${ board.getReadcnt() } <br />
-	${ board.getCrtdate() } <br /> --%>
-
+	<div class="container" align="center">
+		<h1>MVC Model2 (member)</h1>
+		<b>회원등록 : ${ member }</b>
+	</div>
 </body>
 </html>

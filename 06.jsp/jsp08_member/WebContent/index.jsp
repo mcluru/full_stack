@@ -9,14 +9,12 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<h1>Insert</h1>
-	${ board.toString() } <hr />
-<%-- 	${ board.getBno() } <br />
-	${ board.getSubject() } <br />
-	${ board.getWriter() } <br />
-	${ board.getContent() } <br />
-	${ board.getReadcnt() } <br />
-	${ board.getCrtdate() } <br /> --%>
-
+	<div class="container" align="center">
+      <h3>회원관리</h3>
+      <div class="form-group">
+         <input type="button" class="btn btn-primary" value="로그인" onclick="location.href='login_form.jsp'">
+         <input type="button" class="btn btn-primary" value="회원등록" onclick="location.href='register_form.jsp'">
+      </div>
+   </div>
 </body>
 </html>
