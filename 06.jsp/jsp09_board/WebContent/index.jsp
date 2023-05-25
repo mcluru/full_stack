@@ -16,7 +16,8 @@
 			클릭하세요</p>
 		</div>
 		<a href="boardWriteForm.bo" class="btn btn-success mr-sm-2">게시판글쓰기</a>
-		<a href="boardList.bo?p=1&f=board_name&q=" class="btn btn-success">게시판글 목록보기</a>
+		<a href="boardList.bo?p=1&f=writer&q=" class="btn btn-success">게시판글 목록보기</a>
+		<a href="boardList.bo?p=1&f=writer&q=" class="btn btn-success">회원관리</a>
 	</div>
 </body>
 </html>

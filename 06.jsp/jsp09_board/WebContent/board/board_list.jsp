@@ -12,7 +12,12 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 	<title>글목록보기</title>
 </head>
-<body>
+<body> 
+<%-- 	${ pageInfo.toString() }<br>
+	${ param.p }<br>
+	${ param.f }<br>
+	${ param.q }<br>
+	${ param.fn }<hr> --%>
 	<div class="container mt-sm-5" align="center">
 	
 		<div class="jumbotron">
@@ -22,21 +27,22 @@
 			</c:if>
 		</div>
 	
-		<form action="" class="form-line">
+		<form action="boardList.bo" class="form-line">
 			<div class="input-group">
 				<select name="f" id="" class="for-control col-sm-2 mr-sm-2">
-					<option value="writer">작성자</option>
-					<option value="subject">제목</option>
+					<option ${ param.f == "writer" ? "selected" : "" } value="writer">작성자</option>
+					<option ${ param.f == "subject" ? "selected" : "" }value="subject">제목</option>
 				</select>
-				<input type="text" name="q" class="form-control col-sm-8 mr-sm-2" placeholder="검색어를 입력하세요..."/>
+				<input type="text" name="q" class="form-control col-sm-8 mr-sm-2" value="${ param.q }" 
+					placeholder="검색어를 입력하세요..."/>
 				<button type="submit" class="btn btn-primary col-sm-1 mr-sm-2">검색</button>
-				<a href="boardWriteForm.bo" class="btn btn-success col-sm-1">글쓰기</a>
+				<a href="boardWriteForm.bo?p=${param.p}" class="btn btn-success col-sm-1">글쓰기</a>
 			</div>
 		</form>
 		<br class="mt-sm-5" />
 		
 		<table class="table table-bordered table-striped table-hover">
-			<thead align="center">
+			<thead class="table-dark" align="center">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -50,7 +56,16 @@
 			<c:forEach var="board" items="${boardList}">
 				<tr>
 					<td>${board.getBno()}</td>
-					<td><a href="boardDetail.bo?bno=${board.getBno()}">${board.getSubject()}</a></td>
+					<td>
+						<c:if test="${ board.getRe_lev() != 0 }">
+							┗
+							<c:forEach var="i" begin="1" end="${ board.getRe_lev() }">
+								━
+							</c:forEach>
+						</c:if>
+						<a href="boardDetail.bo?bno=${board.getBno()}">${board.getSubject()}</a>
+						<span class="badge badge-danger ml-sm-3">${board.getReadcount()}</span>
+					</td>
 					<td>${board.getWriter()}</td>
 					<td>${board.getCrtdate()}</td>
 					<td align="center">
@@ -71,21 +86,25 @@
 		</table>
 	</div>
 	<br />
-	
-	<div class="container" align="center">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a href="#" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-			<li class="page-item"><a href="#" class="page-link"><i class="fas fa-backward"></i></a></li>
-			
-			<c:forEach var="page_num" begin="1" end="10">
-				<li class="page-item"><a href="#" class="page-link">${page_num}</a></li>
-			</c:forEach>
-			
-			<li class="page-item"><a href="#" class="page-link"><i class="fas fa-forward"></i></a></li>
-			<li class="page-item"><a href="#" class="page-link"><i class="fas fa-fast-forward"></i></a></li>
-		</ul>
-	</div>
 
+	<div class="container" align="center">
+      <ul class="pagination justify-content-center">
+      
+         <c:if test="${ pageInfo.getStartPage() != 1 }">
+            <li class="page-item"><a href="boardList.bo?p=1" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
+            <li class="page-item"><a href="boardList.bo?p=${ pageInfo.getStartPage() - 10 }" class="page-link"><i class="fas fa-backward"></i></a></li>         
+         </c:if>
+
+         <c:forEach var="page_num" begin="${ pageInfo.getStartPage() }" end="${ pageInfo.getEndPage() }">
+            <li class="page-item"><a href="boardList.bo?p=${ page_num }" class="page-link">${page_num}</a></li>
+         </c:forEach>
+         
+         <c:if test="${ pageInfo.getEndPage() < pageInfo.getTotalPage() }">
+            <li class="page-item"><a href="boardList.bo?p=${ pageInfo.getStartPage() + 10 }" class="page-link"><i class="fas fa-forward"></i></a></li>
+            <li class="page-item"><a href="boardList.bo?p=${ pageInfo.getTotalPage() }" class="page-link"><i class="fas fa-fast-forward"></i></a></li>
+         </c:if>
+      </ul>
+   </div>
 </body>
 </html>
 
