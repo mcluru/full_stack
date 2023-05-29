@@ -10,9 +10,9 @@ public class JDBCConnector {
 	public static Connection getConnection() {
 		
 		String DRV = "oracle.jdbc.OracleDriver";
-		String URL = "jdbc:oracle:thin:@localhost:1521:xe";	//oracle connection정보
-		String USR = "scott";
-		String PWD = "tiger";
+	    String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	    String USR = "scott";
+	    String PWD = "tiger";
 		
 		try {
 			Class.forName(DRV);
@@ -26,9 +26,9 @@ public class JDBCConnector {
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
 		
 		try {
-			if(rs != null) rs.close();
-			if(stmt != null) rs.close();
-			if(conn != null) rs.close();
+			if (rs != null) rs.close(); 
+			if (stmt != null) stmt.close(); 
+	      	if (conn != null) conn.close(); 
 		} catch (Exception e) {
 		}
 	}
