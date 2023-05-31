@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString // (exclude = "member")
+@ToString(exclude = "member") // (exclude = "member")
 @Entity
 public class Board {
 
@@ -29,5 +29,14 @@ public class Board {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
 	private long cnt;
+	
+	@ManyToOne
+	@JoinColumn(name="MEMBER_ID", nullable = false)
+	private Member member;
+	
+	public void setMember(Member member) {
+		this.member = member;
+		member.getBoardList().add(this);
+	}
 
 }
