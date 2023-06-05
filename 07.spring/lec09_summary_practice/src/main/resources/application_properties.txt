@@ -1,0 +1,39 @@
+server.port=8090
+
+
+# DataSource Setting
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.url=jdbc:mariadb://localhost:3306/spring
+spring.datasource.username=root
+spring.datasource.password=12345
+
+# JPA Setting
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.generate-ddl=false
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MariaDB103Dialect
+spring.jpa.properties.hibernate.format_sql=true
+
+Spring Data JPA : JPA를 더 편리하게 사용하기 위한 모듈
+	- hibernate와 같은 구현체들을 좀 더 쉽게 사용가능하도록 추상화함.
+	- JPA를 한단계 추상화시킨 Repository 인터페이스를 제공
+	- 인터페이스에 정해진 규칙대로 메소드 입력 -> Spring이 알아서 메소드 이름에 적합한 쿼리를 날리를
+		구현체를 만들어 Bean으로 등록
+JPA : 자바 어플리케이션에서 관계형 DB를 사용하는 방식을 정의한 인터페이스
+	  즉, ORM기술에 대한 표준기술 명세로 구현이 x.(특정 기능을 하는 라이브러리가 x)
+hibernate : JPA라는 명세의 구현체의 한 종류. 인터페이스를 직접 구현한 라이브러리.
+
+JPA를 사용하기 위해 반드시 hibernate를 사용할 필요는 x(필요에 따라 다른 구현체 사용 가능)
+hibernate보다 Spring Datd JPA사용이 권장되는 이유
+	- 구현체/저장소 교체의 용이성
+	
+
+# Logging Setting
+logging.level.org.hibernate=info
+
+# Thymeleaf Cache Setting
+spring.thymeleaf.cache=false
+
+# file upload / download setting
+path.upload=d:/temp/upload/
+path.download=d:/temp/download/
