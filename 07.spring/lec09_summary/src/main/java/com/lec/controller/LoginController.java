@@ -33,11 +33,16 @@ public class LoginController {
 		Member findMember = memberService.getMember(member);		
 		if (findMember != null && findMember.getPassword().equals(member.getPassword())) {	
 			model.addAttribute("member", findMember); // session과 reauest영역에 동시저장
-			return "member/getMemberInfo";
+			return "redirect:getMemberInfo";
 		} else {
 			return "redirect:login";
 		}
-	}	
+	}
+	
+	@GetMapping("/getMemberInfo")
+	public String getMemberInfoTest() {
+		return "member/getMemberInfo";
+	}
 	
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
@@ -46,31 +51,31 @@ public class LoginController {
 	}	
 
 	
-	@PostMapping("/login_xxx")
-	public String login(Member member, 
-						Model model, 
-						@PageableDefault(page=0, size=10, sort="name", direction=Sort.Direction.ASC) Pageable pageable) {
-		Member findMember = memberService.getMember(member);
-		if (findMember != null && findMember.getPassword().equals(member.getPassword())) {
-			model.addAttribute("member", findMember);
-			Page<Member> pagedResult = memberService.getMemberList(pageable, "name", "");
-			
-			int curPage   = pagedResult.getPageable().getPageNumber() + 1;
-			int startPage = Math.max(curPage-9, 1);
-			int endPage   = Math.min(curPage+10, pagedResult.getTotalPages());
-			
-			model.addAttribute("pagedResult", pagedResult);
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("st", "name");
-			model.addAttribute("sw", "");
-			model.addAttribute("cp", curPage);
-			model.addAttribute("sp", startPage);
-			model.addAttribute("ep", endPage);
-			
-			return "member/getMemberList";
-		} else {
-			return "redirect:login";
-		}
-	}
+//	@PostMapping("/login_xxx")
+//	public String login(Member member, 
+//						Model model, 
+//						@PageableDefault(page=0, size=10, sort="name", direction=Sort.Direction.ASC) Pageable pageable) {
+//		Member findMember = memberService.getMember(member);
+//		if (findMember != null && findMember.getPassword().equals(member.getPassword())) {
+//			model.addAttribute("member", findMember);
+//			Page<Member> pagedResult = memberService.getMemberList(pageable, "name", "");
+//			
+//			int curPage   = pagedResult.getPageable().getPageNumber() + 1;
+//			int startPage = Math.max(curPage-9, 1);
+//			int endPage   = Math.min(curPage+10, pagedResult.getTotalPages());
+//			
+//			model.addAttribute("pagedResult", pagedResult);
+//			model.addAttribute("pageable", pageable);
+//			model.addAttribute("st", "name");
+//			model.addAttribute("sw", "");
+//			model.addAttribute("cp", curPage);
+//			model.addAttribute("sp", startPage);
+//			model.addAttribute("ep", endPage);
+//			
+//			return "member/getMemberList";
+//		} else {
+//			return "redirect:login";
+//		}
+//	}
 	
 }
