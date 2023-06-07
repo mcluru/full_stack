@@ -39,8 +39,8 @@ public class MemberController {
 	 */
 	@GetMapping("/getMemberList")
 	public String getMemberList(Model model,
-			@RequestParam(defaultValue="0") int curPage,
-			@RequestParam(defaultValue="10") int rowSizePerPage,
+			@RequestParam(defaultValue="0") int curPage,			//Param으로 가져오는 이유 : url요청에 파라미터 값이 생길 경우
+			@RequestParam(defaultValue="10") int rowSizePerPage,	//							맞춰서 페이징 처리하기 위함
 			@RequestParam(defaultValue="name") String searchType,
 			@RequestParam(defaultValue="") String searchWord) {  
 		

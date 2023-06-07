@@ -36,10 +36,10 @@ public class MemberServiceImpl implements MemberService {
 	public Page<Member> getMemberList(Pageable pageable, String searchType, String searchWord) {
 		if(searchType.equalsIgnoreCase("id")) {	// equalsIgnoreCase : 대소문자 구분안함
 												// equals : 대소문자 구분함.
-			return memberRepo.findByIdContaining(searchWord, pageable);
+			return memberRepo.findByIdContaining(searchWord, pageable);	// 검색방식이 id면 searchWord로 검색해서 페이징처리까지 해라
+		} else {
+			return memberRepo.findByNameContaining(searchWord, pageable);	//아니라면 searchWord로 이름을 검색해라
 		}
-		
-		return null;
 	}
 
 }
