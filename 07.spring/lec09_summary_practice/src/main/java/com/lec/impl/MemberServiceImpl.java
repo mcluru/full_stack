@@ -42,4 +42,11 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+
+	@Override
+	public void insertMember(Member member) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -52,5 +53,24 @@ public class MemberController {
 		
 		return "member/getMemberList";
 	}
+	
+	
+	
+	
+	@GetMapping("/insertMember")
+	public String insertMemberForm(Member member) {
+		return "member/insertMember";
+	}
+	
+	@PostMapping("/insertMember")
+	public String insertMember(Member member) {
+		if (member.getId() == null) {
+			return "redirect:login";
+		}
+		member.setRole(member.getRole() != null ? "ADMIN" : "USER"); // 삼항 연산자를 사용하여 멤버 객체의 역할(role)을 설정하는 코드
+		memberService.insertMember(member);
+		return "redirect:getMemberList";
+	}
+	
 	
 }
