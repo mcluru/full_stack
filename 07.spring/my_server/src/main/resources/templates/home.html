@@ -42,7 +42,9 @@
 		</ul>
 	</div>
 	<div>
-		<a href="admin_main">관리자페이지</a>
+		<!-- <a th:unless="${session.loginss}" href="adminmain">관리자페이지</a> -->
+		<a th:unless="${session?.loginss?.role == 'USER'}" href="adminmain">관리자페이지</a>
+		<!-- <a href="adminmain">관리자페이지</a> -->
 	</div>
 	<br />
 	<!-- <span class="bg bg-danger" th:if="${session.loginss}" th:text="${session.loginss.name}">ㅎㅇ</span> -->

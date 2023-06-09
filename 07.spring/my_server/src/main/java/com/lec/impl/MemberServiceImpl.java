@@ -16,8 +16,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberRepository memberRepo;
 	
 	@Override
-	public Member getMember(Member loginss) {
-		Optional<Member> findMember = memberRepo.findById(loginss.getId());
+	public Member getMember(Member member) {
+		Optional<Member> findMember = memberRepo.findById(member.getId());
 		if(findMember.isPresent()) return findMember.get();
 		else return null;
 	}

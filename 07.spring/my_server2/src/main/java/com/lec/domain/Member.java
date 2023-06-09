@@ -1,8 +1,10 @@
 package com.lec.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Admin {
+public class Member {
 	
 	@Id
 	private String id;
@@ -20,6 +22,9 @@ public class Admin {
 	private String password;
 	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
+	private String cell;
+	private String addr;
 	@Column(nullable = false)
 	private String role;
 	
