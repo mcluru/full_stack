@@ -11,27 +11,60 @@ import lombok.ToString;
 public class PageInfo {
 	
 	//입력받는 데이터
-	private int curPage = 1;           // 현재 페이지 번호
-	private int rowSizePerPage = 50;   // 한 페이지당 레코드 수      기본10
-	private int pageSize = 10;         // 페이지 리스트에서 보여줄 페이지 갯수  이거는 보통 10 or 5 안 변함 
-	private int totalRowCount;         // 총 레코드 건수
-	private int firstRow ;             // 시작 레크드 번호   
-	private int lastRow;               // 마지막 레크드 번호 
-	private int totalPageCount;        // 총 페이지 건수
-	private int startPage; 	           // 페이지 리스트에서 시작  페이지 번호 
-	private int endPage;               // 페이지 리스트에서 마지막 페이지 번호 
+	private int totalCnt; // 총 게시물 갯수
+	private int pageSize; // 한 페이지의 게시물 수
+	private int naviSize = 10; // 페이지 네비게이션 크기
+	private int totalPage; // 전체 페이지 갯수
+	private int page = 1;// 현재 페이지
+	private int beginPage; // 네비의 첫번째 페이지
+	private int endPage; // 네비의 마지막 페이지
+	private boolean showPrev; // 이전페이지 이동 링크 여부
+	private boolean showNext; // 다음페이지 이동 링크 여부
+	private boolean showBegin;
+	private boolean showEnd;
 	private String searchWord;
 	private String searchType;
-		
-	//page계산
-	public void pageSetting() {
-
-		totalPageCount=(totalRowCount-1)/rowSizePerPage+1;  
-		firstRow=(curPage-1)*rowSizePerPage;  
-		lastRow=firstRow + rowSizePerPage;      
-		if(lastRow>totalRowCount) lastRow=totalRowCount;		
-		startPage=(curPage-1)/pageSize*pageSize+1;
-		endPage=startPage+pageSize-1;
-		if(endPage>totalPageCount) endPage=totalPageCount;			
+	
+	
+	//생성자
+	public PageInfo() {
+		this.pageSize = 10;
 	}
+	
+	public PageInfo(int totalCnt, int page, int pageSize, String searchWord, String searchType) {
+		this.totalCnt = totalCnt;
+		this.page = page;
+		this.pageSize = pageSize;
+		this.searchType = searchType;
+		this.searchWord = searchWord;
+		
+		totalPage = (int) Math.ceil(totalCnt/(double)pageSize);	// Math.ceil : 올림
+		beginPage = page / naviSize * naviSize + 1;
+		endPage = Math.min(beginPage + naviSize - 1, totalPage);
+		showPrev = beginPage != 1;
+		showNext = endPage != totalPage;
+		showBegin = beginPage != 1;
+		showEnd = endPage != totalPage;
+		
+	}
+	
+	//생성자 (pageSize 10으로 고정)
+//	public PageInfo(int totalCnt, int page) {
+//		this(totalCnt, page, 10);
+//	}
+	
+	
+	// Test 메서드
+	public void pageTest() {
+		System.out.println(page);
+		
+		System.out.print(showBegin ? "[Begin]  " : "");
+		System.out.print(showPrev ? "[Prev]  " : "");
+		for(int i=beginPage;i<=endPage;i++) {
+			System.out.print(i + "  ");
+		}
+		System.out.print(showNext ? "[Next]  " : "");
+		System.out.print(showEnd ? "[End]  " : "");
+	}
+
 }

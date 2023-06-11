@@ -15,19 +15,19 @@
 	<div class="container" align="center">
 		<div class="mt-4 p-5 bg-primary text-white rounded">
 			<h3>게시판목록</h3>
-			<h5><font clsss="bg bg-danger" th:text="|${session['member'].name}(${session.member.id})|"></font>님 환영합니다!!</h5>
+			<h5><font class="bg bg-danger" th:text="|${session['member'].name}(${session.member.id})|"></font>님 환영합니다!!</h5>
 		</div> 
 		  
  		<!-- <p th:text="${session.member.toString()}"></p>
-		<p th:text="${pagedResult.getContent()}"></p> 
-		<p th:text="${pagingInfo}"></p>  -->
+		<p th:text="${pageResult.getContent()}"></p> 
+		<p th:text="${pageInfo}"></p>  -->
 				  	
  		<form action="getBoardList" method="get" id="boardForm">   
-			<input type="hidden" id="curPage" name="curPage"  th:value="0">
-			<input type="hidden" id="rowSizePerPage" name="rowSizePerPage" th:value="${rp}">
+			<input type="hidden" id="page" name="page"  th:value="0">
+			<input type="hidden" id="pageSize" name="pageSize" th:value="${ps}">
 	   		<div class="row mt-3 justify-content-center">
 				<div class="col-auto me-1">
-					<label class="input-group-text" th:text="|${pageable.getPageNumber()*pageable.getPageSize()+1} of ${pagedResult.getTotalElements()}|"></label>
+					<label class="input-group-text" th:text="|${pageable.getPageNumber()*pageable.getPageSize()+1} of ${pageResult.getTotalElements()}|"></label>
 				</div> 
 		    	<div class="col-auto me-1">
 					<select class="form-select" id="searchType" name="searchType">
@@ -62,7 +62,7 @@
 						<th class="col text-center">파일</th>							
 					</thead>
 					<tbody>
-						<tr th:each="board, state : ${pagedResult.getContent()}">
+						<tr th:each="board, state : ${pageResult.getContent()}">
 							<td th:text="${state.count}">
 							<td th:text="${board.seq}"></td>
 							<td><a th:href="@{/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
@@ -90,18 +90,18 @@
 		    </div>	
 		    	    
 			<ul class="col-9 btn-sm pagination justify-content-center">	
-				<th:block th:if="${sp != 1 }">
-					<li class="page-item"><a th:href="@{/getBoardList(curPage=0, rowSizePerPage=${rp}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-					<li class="page-item"><a th:href="@{/getBoardList(curPage=${sp-ps}, rowSizePerPage=${rp}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-backward"></i></a></li>				
+				<th:block th:if="${bp != 1 }">
+					<li class="page-item"><a th:href="@{/getBoardList(page=0, pageSize=${ps}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
+					<li class="page-item"><a th:href="@{/getBoardList(page=${bp-ns}, pageSize=${ps}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-backward"></i></a></li>				
 				</th:block>
 				
- 				<th:block th:each="page : ${#numbers.sequence(pagingInfo.getStartPage(), pagingInfo.getEndPage())}">
-					<li class="page-item" th:classappend="${(page-1)==pagingInfo.getCurPage() ? 'active' : ''}"><a class="page-link" th:href="@{/getBoardList(curPage=${page-1}, rowSizePerPage=${rp}, searchType=${st}, searchWord=${sw})}" th:text="${page}" ></a></li>
+ 				<th:block th:each="page : ${#numbers.sequence(pageInfo.getBeginPage(), pageInfo.getEndPage())}">
+					<li class="page-item" th:classappend="${(page-1)==pageInfo.getPage() ? 'active' : ''}"><a class="page-link" th:href="@{/getBoardList(page=${page-1}, pageSize=${ps}, searchType=${st}, searchWord=${sw})}" th:text="${page}" ></a></li>
 				</th:block>	
 				
 				<th:block th:if="${ ep lt tp }">
-					<li class="page-item"><a th:href="@{/getBoardList(curPage=${ep}, rowSizePerPage=${rp}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-forward"></i></a></li>				
-					<li class="page-item"><a th:href="@{/getBoardList(curPage=${tp-1}, rowSizePerPage=${rp}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
+					<li class="page-item"><a th:href="@{/getBoardList(page=${ep}, pageSize=${ps}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-forward"></i></a></li>				
+					<li class="page-item"><a th:href="@{/getBoardList(page=${tp-1}, pageSize=${ps}, searchType=${st}, searchWord=${sw})}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
 				</th:block>	
 			</ul> pagination
 			
@@ -110,11 +110,11 @@
 					<span class="input-group-text"><i class="fas fa-list"></i></span>
 					<select class="col-auto form-select" id="rowPerPage" name="rowPerPage">
  						<th:block th:each="num : ${#numbers.sequence(10, 50, 10)}">
-				    		<option th:value="${num}" th:text="${num}" th:attr="selected=${rp==num ? 'true' : 'false'}"></option>										   					
+				    		<option th:value="${num}" th:text="${num}" th:attr="selected=${ps==num ? 'true' : 'false'}"></option>										   					
 				    	</th:block>											
 					</select>
 				</div>
-			</div> rowSizePerPage  
+			</div> pageSize  
 			 	
 		</div> 페이징
 				
@@ -125,14 +125,14 @@
 			
 			// 목록 갯수 변경
 			$('#rowPerPage').change(function(e) {
-				$('#curPage').val(0);
-				$('#rowSizePerPage').val($(this).val());
+				$('#page').val(0);
+				$('#pageSize').val($(this).val());
 				$('#boardForm').submit();
 			});	//#rowPerPage
 			
 			// 초기화 버튼 클릭
 			$('#btnReset').click(function() {
-				$('#curPage').val(0);
+				$('#page').val(0);
 				$('#boardForm').find("select[name='searchType'] option:eq(0)").attr("selected", "selected");
 				$('#boardForm').find("input[name='searchWord']").val("");
 				$('#boardForm').submit();
@@ -140,12 +140,12 @@
 		})
 	</script>
 	
-member.id를 반복문안에서만 접근가능 나중에 확인해 볼 것	
+<!-- member.id를 반복문안에서만 접근가능 나중에 확인해 볼 것	 -->
 	<script th:inline="javascript">
 	/*<![CDATA[*/
 		function deleteCheck() {
 			if(confirm("삭제을 하겠습니까?")) {
-				alert([[${cp}]]);				
+				alert([[${pg}]]);				
 			} else {
 				return false;
 			}

@@ -84,11 +84,6 @@ public class LoginController {
 		}
 	}
 	
-//	@GetMapping("/getMemberInfo")
-//	public String loginSuccess() {
-//		return "member/getMemberInfo";
-//	}
-	
 	/*
 	 SessionStatus
 	 
