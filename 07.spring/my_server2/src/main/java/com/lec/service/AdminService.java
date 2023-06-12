@@ -5,12 +5,8 @@ import org.springframework.data.domain.Pageable;
 
 import com.lec.domain.Member;
 
-public interface MemberService {
+public interface AdminService {
 
-	Member getMember(Member member);
-	void insertMember(Member member);
-	void insertAdmin(Member member);
-	Page<Member> getMemberList(Pageable pageable, String searchType, String searchWord);
 	Page<Member> getAdminList(Pageable pageable, String searchType, String searchWord);
 
 }

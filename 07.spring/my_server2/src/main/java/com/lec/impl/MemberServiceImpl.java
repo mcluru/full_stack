@@ -3,6 +3,8 @@ package com.lec.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.lec.domain.Member;
@@ -33,6 +35,28 @@ public class MemberServiceImpl implements MemberService {
 		member.setCell("-");
         member.setRole("ADMIN");
 		memberRepo.save(member);
+	}
+
+	@Override
+	public Page<Member> getMemberList(Pageable pageable, String searchType, String searchWord) {
+		if(searchType.equalsIgnoreCase("id")) {
+			return memberRepo.findByIdContainingAndRole(searchWord, "USER", pageable);
+		} else if(searchType.equalsIgnoreCase("name")) {
+			return memberRepo.findByNameContainingAndRole(searchWord, "USER", pageable);
+		} else {
+			return memberRepo.findByIdContainingAndRole(searchWord, "USER", pageable);
+		}
+	}
+	
+	@Override
+	public Page<Member> getAdminList(Pageable pageable, String searchType, String searchWord) {
+		if(searchType.equalsIgnoreCase("id")) {
+			return memberRepo.findByIdContainingAndRole(searchWord, "ADMIN", pageable);
+		} else if(searchType.equalsIgnoreCase("name")) {
+			return memberRepo.findByNameContainingAndRole(searchWord, "ADMIN", pageable);
+		} else {
+			return memberRepo.findByIdContainingAndRole(searchWord, "ADMIN", pageable);
+		}
 	}
 
 }

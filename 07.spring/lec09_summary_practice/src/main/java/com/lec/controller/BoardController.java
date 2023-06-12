@@ -106,14 +106,14 @@ public class BoardController {
 		
 		List<Board> boardList = pageResult.getContent();
 
-		for (Board board : boardList) {
-		    System.out.println(board.toString());
-		}
+//		for (Board board : boardList) {
+//		    System.out.println(board.toString());
+//		}
 		
 		
 		int resultTotalCnt = pageResult.getNumberOfElements();
 		
-		System.out.println(resultTotalCnt);
+//		System.out.println(resultTotalCnt);
 		
 		PageInfo pageInfo = new PageInfo((int)pageResult.getTotalElements(), page, pageSize, searchType, searchWord);
 		
