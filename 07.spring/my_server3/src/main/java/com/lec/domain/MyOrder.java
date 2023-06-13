@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @ToString
-public class Order {
+public class MyOrder {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

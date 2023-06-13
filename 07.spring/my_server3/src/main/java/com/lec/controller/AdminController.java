@@ -279,4 +279,9 @@ public class AdminController {
 		goodsService.deleteGoods(goods);
 		return "redirect:goods_list";
 	}
+	
+	@GetMapping("/admin_update")
+	public String adminUpdateView(Member member) {
+		return "admin/admin_update";
+	}
 }

@@ -27,5 +27,6 @@ public class Member {
 	private String addr;
 	@Column(nullable = false)
 	private String role;
+
 	
 }
