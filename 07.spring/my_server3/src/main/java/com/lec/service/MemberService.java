@@ -13,5 +13,6 @@ public interface MemberService {
 	Page<Member> getMemberList(Pageable pageable, String searchType, String searchWord);
 	Page<Member> getAdminList(Pageable pageable, String searchType, String searchWord);
 	void deleteMember(Member member);
+	void updateMember(Member member);
 
 }

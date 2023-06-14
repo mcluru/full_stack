@@ -1,17 +1,22 @@
 package com.lec.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -281,7 +286,60 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin_update")
-	public String adminUpdateView(Member member) {
+	public String adminUpdateView(Member member, Model model) {
+		model.addAttribute("member", memberService.getMember(member));
 		return "admin/admin_update";
 	}
+	
+	@PostMapping("/admin_update")
+	public String adminUpdate(Member member) {
+		memberService.updateMember(member);
+		return "redirect:admin_list";
+	}
+	
+	@GetMapping("/member_update")
+	public String memberUpdateView(Member member, Model model) {
+		model.addAttribute("member", memberService.getMember(member));
+		return "admin/member_update";
+	}
+	
+	@PostMapping("/member_update")
+	public String memberUpdate(Member member) {
+		memberService.updateMember(member);
+		return "redirect:member_list";
+	}
+	
+	@GetMapping("/category_update")
+	public String categoryUpdateView(Category category, Model model) {
+		model.addAttribute("category", categoryService.getCategory(category));
+		return "admin/category_update";
+	}
+	
+	@PostMapping("/category_update")
+	public String categoryUpdate(Category category) {
+		categoryService.updateCategory(category);
+		return "redirect:category_list";
+	}
+	
+	@GetMapping("/goods_update")
+	public String goodsUpdateView(Goods goods, Model model, Category category) {
+		model.addAttribute("goods", goodsService.getGoods(goods));
+		System.out.println(goodsService.getGoods(goods));
+		model.addAttribute("categories", categoryService.getAllCategories());
+		return "admin/goods_update";
+	}
+	
+	@InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+	
+	@PostMapping("/goods_update")
+	public String goodsUpdate(Goods goods, Model model, @RequestParam("gdsDate") String gdsDate) {
+		goodsService.updateGoods(goods);
+		
+		return "redirect:goods_list";
+	}
+	
 }

@@ -42,7 +42,10 @@
 	        <td th:text="${member.cell}"></td>
 	        <td th:text="${member.addr}"></td>
 	        <td>
-	        	<a th:href="@{/member_delete(id=${member.id})}" class="btn"><i class="fas fa-minus"></i></i></a>
+	        	<a th:href="@{/member_update(id=${member.id})}" class="btn btn-outline-secondary">수정</a>
+	        </td>
+	        <td>
+	        	<a th:href="@{/member_delete(id=${member.id})}" class="btn btn-outline-secondary">삭제</a>
 	        </td>
 	      </tr>
 	    </th:block>

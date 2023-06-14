@@ -28,7 +28,7 @@
 	  <thead>
 	    <tr>
 	      <th>Category Code</th>
-	      <th>Name</th>
+	      <th>Category Name</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -38,7 +38,10 @@
 	        <td th:text="${cate.cateCode}"></td>
 	        <td th:text="${cate.cateName}"></td>
 	        <td>
-	        	<a th:href="@{/category_delete(cateCode=${cate.cateCode})}" class="btn"><i class="fas fa-minus"></i></i></a>
+	        	<a th:href="@{/category_update(cateCode=${cate.cateCode})}" class="btn btn-outline-secondary">수정</a>
+	        </td>
+	        <td>
+	        	<a th:href="@{/category_delete(cateCode=${cate.cateCode})}" class="btn btn-outline-secondary">삭제</a>
 	        </td>
 	      </tr>
 	    </th:block>

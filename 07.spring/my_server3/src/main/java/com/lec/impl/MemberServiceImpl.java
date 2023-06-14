@@ -64,4 +64,9 @@ public class MemberServiceImpl implements MemberService {
 		memberRepo.deleteById(member.getId());
 	}
 
+	@Override
+	public void updateMember(Member member) {
+		memberRepo.save(member);
+	}
+
 }

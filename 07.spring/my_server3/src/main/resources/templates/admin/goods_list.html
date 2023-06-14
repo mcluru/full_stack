@@ -31,6 +31,7 @@
 	      <th>Name</th>
 	      <th>Price</th>
 	      <th>Stock</th>
+	      <th>Des</th>
 	      <th>Category Code</th>
 	      <th>Category name</th>
 	    </tr>
@@ -43,10 +44,14 @@
 	        <td th:text="${goods.gdsName}"></td>
 	        <td th:text="${goods.gdsPrice}"></td>
 	        <td th:text="${goods.gdsStock}"></td>
+	        <td th:text="${goods.gdsDes}"></td>
 	        <td th:text="${goods.category.cateCode}"></td>
 	        <td th:text="${goods.category.cateName}"></td>
 	        <td>
-	        	<a th:href="@{/goods_delete(gdsNum=${goods.gdsNum})}" class="btn"><i class="fas fa-minus"></i></i></a>
+	        	<a th:href="@{/goods_update(gdsNum=${goods.gdsNum})}" class="btn btn-outline-secondary">수정</a>
+	        </td>
+	        <td>
+	        	<a th:href="@{/goods_delete(gdsNum=${goods.gdsNum})}" class="btn btn-outline-secondary">삭제</a>
 	        </td>
 	      </tr>
 	    </th:block>

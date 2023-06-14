@@ -1,6 +1,7 @@
 package com.lec.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,6 +42,18 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteCategory(Category category) {
 		categoryRepo.deleteById(category.getCateCode());
+	}
+
+	@Override
+	public Category getCategory(Category category) {
+		Optional<Category> findCategory = categoryRepo.findById(category.getCateCode());
+		if(findCategory.isPresent()) return findCategory.get();
+		else return null;
+	}
+
+	@Override
+	public void updateCategory(Category category) {
+		categoryRepo.save(category);
 	}
 
 }
