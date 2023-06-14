@@ -30,4 +30,10 @@ public class HomeController {
     public String noAccess() {
     	return "no_access";
     }
+    
+    @GetMapping("/about")
+    public String about() {
+    	return "about";
+    }
+    
 }

@@ -20,7 +20,7 @@
 	<div class="container col-3 mt-4">
 		<form action="admin_update" method="post">
 			<input type="hidden" name="role" th:value="${member.role}"/>
-			<input type="hidden" name="cell" th:value="-"/>
+			<input type="hidden" name="cell" th:value="'-'"/>
 			<input type="hidden" name="id" th:value="${member.id}"/>
 			<div>
 				id <input type="text" th:value="${ member.id }" disabled>
