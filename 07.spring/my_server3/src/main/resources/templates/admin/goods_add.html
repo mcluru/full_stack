@@ -24,7 +24,7 @@
 		<div>
 			상품 추가
 		</div>
-		<form action="goods_add" method="post">
+		<form action="goods_add" method="post" enctype="multipart/form-data">
 			<div>
 				<div>
 					카테고리 
@@ -43,6 +43,9 @@
 				</div>
 				<div>
 					재고수량 <input type="text" name="gdsStock" required>
+				</div>
+				<div>
+					<input type="file" name="uploadFile" id="uploadFile" aria-describedby="uploadFile" aria-label="Upload"/>
 				</div>
 			</div>
 			<button type="submit">상품 추가하기</button>

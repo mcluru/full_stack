@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +40,9 @@ public class Goods {
 	private long gdsStock;	//재고
 	private String gdsDes;	//상품설명
 	private String gdsImg;
+	
+	@Transient
+	private MultipartFile uploadFile;	
 	@Column(columnDefinition = "date default now()")
 	private Date gdsDate;
 

@@ -1,5 +1,10 @@
 package com.lec.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.NoSuchFileException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,21 +12,29 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lec.domain.Category;
 import com.lec.domain.Goods;
@@ -43,6 +56,9 @@ public class AdminController {
 	private CategoryService categoryService;
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Value("${path.upload}")
+	public String uploadFolder;
 	
 
 	
@@ -254,7 +270,15 @@ public class AdminController {
 	}
 	
 	@PostMapping("/goods_add")
-	public String goodsAdd(Goods goods, Category cateCode) {
+	public String goodsAdd(Goods goods, Category cateCode) throws IOException {
+		//파일업로드
+		MultipartFile uploadFile = goods.getUploadFile();
+		if(!uploadFile.isEmpty()) {	//파일이 있다면
+			String fileName = uploadFile.getOriginalFilename();
+			uploadFile.transferTo(new File(uploadFolder + fileName));
+			goods.setGdsImg(fileName);
+		}
+		
 		goods.setCategory(cateCode);
 		goodsService.insertGoods(goods);
 		
@@ -335,11 +359,39 @@ public class AdminController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 	
+	
 	@PostMapping("/goods_update")
-	public String goodsUpdate(Goods goods, Model model, @RequestParam("gdsDate") String gdsDate) {
+	public String goodsUpdate(Goods goods, Model model, @RequestParam("gdsDate") String gdsDate) throws Exception, IOException {
+		MultipartFile uploadFile = goods.getUploadFile();
+	    if (!uploadFile.isEmpty()) { // 새로운 파일이 업로드된 경우
+	        // 파일 업로드 로직 추가
+	        String fileName = uploadFile.getOriginalFilename();
+	        uploadFile.transferTo(new File(uploadFolder + fileName));
+	        goods.setGdsImg(fileName);
+	    }
+
 		goodsService.updateGoods(goods);
 		
 		return "redirect:goods_list";
 	}
+	
+	
+//	@GetMapping("/profile/photo/{imageName}")
+//	   @ResponseBody
+//	   public ResponseEntity<?> getProfieleImage(@PathVariable("imageName") String imageName) throws Exception {
+//	      File imageFile = new File(uploadFolder + imageName);
+//	      
+//	      if(imageFile.exists() != true) {
+//	         throw new NoSuchFileException(imageName + "is not found");
+//	      } else if(imageFile.isFile() != true) {
+//	         throw new NoSuchFileException(imageName + "is not File");
+//	      }
+//	      
+//	      InputStream fis = new FileInputStream(imageFile);
+//	      Resource imageResource = new InputStreamResource(fis);
+//	      
+//	      return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageResource);
+//	   }
+
 	
 }

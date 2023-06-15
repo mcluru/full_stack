@@ -51,5 +51,10 @@ public class GoodsServiceImpl implements GoodsService{
 	public void updateGoods(Goods goods) {
 		goodsRepo.save(goods);
 	}
+
+	@Override
+	public List<Goods> getAllGoods(Goods goods) {
+		return goodsRepo.findAll();
+	}
 	
 }

@@ -18,7 +18,7 @@
 </style>
 <body>
 	<div class="container col-3 mt-4">
-		<form action="goods_update" method="post">
+		<form action="goods_update" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="gdsNum" th:value="${goods.gdsNum}"/>
 			<input type="hidden" name="gdsDate" th:value="${goods.gdsDate}"/>
 			<input type="hidden" name="gdsImg" th:value="${goods.gdsImg}"/>
@@ -40,6 +40,13 @@
 			<div>
 				Des <input type="text" name="gdsDes" th:value="${goods.gdsDes}" />
 			</div>
+			<div>
+			    Image
+			    <span th:if="${goods.gdsImg != null}" th:text="'Selected file: '+${goods.gdsImg}"></span>
+			    <input type="file" name="uploadFile" id="uploadFile" aria-describedby="uploadFile" aria-label="Upload"/>
+			</div>
+			
+			
 			<div>
 				<a href="goods_list" class="btn btn-outline-secondary">목록 돌아가기</a>
 				<input type="submit" class="btn btn-outline-secondary" value="수정"/>
