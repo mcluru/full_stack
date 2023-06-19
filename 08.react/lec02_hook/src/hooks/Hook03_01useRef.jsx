@@ -17,6 +17,7 @@ const Hook03_01useRef = () => {
 
   const increaceCountRef = () => {
     countRef.current = countRef.current + 1;
+    console.log('countRef.current 값 = ', countRef.current);
   }
 
   return (
